@@ -22,11 +22,11 @@ A user will be able to sign up as a Client or a Helping Hand. Clients will be ab
 #### Helping Hand: 
   1. Log in/register
   2. Places bids on jobs - mvp
-  3. Can decline jobs after accepting 
-  4. Cannot cancel within 24 hours
+  3. Can decline jobs after accepting   
+  a. Cannot cancel within 24 hours
   5. Can view own rating - mvp
-  6. High amount of jobs completed and high rating = preferred operative
-    * Some symbol, different than the client
+  6. High amount of jobs completed and high rating = preferred operative  
+  a. Some symbol, different than the client
   7. Submit review of client
   8. View past and upcoming jobs - mvp
 
