@@ -42,13 +42,13 @@ A user will be able to sign up as a Client or a Helping Hand. Clients will be ab
 ### Classes: Client and Helping Hand
 
 1. Tables:
-  1. Client
-  * Client ID
-  * Username
-  * Password
-    * Full Address
-    * Contact Info
-    * Rating (5 star default)
+  * Client
+  1. Client ID
+  2. Username
+  3. Password
+  4. Full Address
+  5. Contact Info
+  6. Rating (5 star default)
   2. Helper
     * helper_id
     * Username
