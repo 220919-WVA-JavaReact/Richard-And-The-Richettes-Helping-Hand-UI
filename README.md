@@ -1,7 +1,9 @@
 # Richard-And-The-Richettes-Helping-Hand-UI
 
 ## Description:
-	An app created to help clients find people to complete odd jobs for them without the hassle of going through a hiring agency. Clients will be able to post a request (including a description, job title, and deadline) and Helpers will be able to place bids on the job. The client will choose from the available bids and the request will be marked as pending. The request will be marked as closed once the job has been completed.
+	An app created to help clients find people to complete odd jobs for them without the hassle of going through a hiring agency.
+	Clients will be able to post a request (including a description, job title, and deadline) and Helpers will be able to place bids on the job. 
+	The client will choose from the available bids and the request will be marked as pending. The request will be marked as closed once the job has been completed.
 
 ## Executive Summary:
 	A user will be able to sign up as a Client or a Helping Hand. Clients will be able to submit requests for tasks, with deadlines, they need help accomplishing. Helping Hands will be able to place bids on requests, setting a price they deem
