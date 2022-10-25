@@ -9,31 +9,31 @@ A user will be able to sign up as a Client or a Helping Hand. Clients will be ab
 ### User Stories:
 #### Client: 
   1. Log in/register
-  2. Submits a request, specifying the type (car wash, house work, etc) -mvp
+  2. Submits a request, specifying the type (car wash, house work, etc)
   3. Submits payment for job 
-  4. Submit reviews for the Helping Hand(Star rating?) - mvp
-  5. View own rating - mvp  
+  4. Submit reviews for the Helping Hand(Star rating?
+  5. View own rating  
   a. High rating and high request amount = preferred client status  
   b. Some star on profile
-  6. View past and active requests - mvp
-  7. Can view/accept/deny bids on requests - mvp
+  6. View past and active requests
+  7. Can view/accept/deny bids on requests
 #### Helping Hand: 
   1. Log in/register
-  2. Places bids on jobs - mvp
+  2. Places bids on jobs
   3. Can decline jobs after accepting   
   a. Cannot cancel within 24 hours
-  5. Can view own rating - mvp
+  5. Can view own rating
   6. High amount of jobs completed and high rating = preferred operative  
   a. Some symbol, different than the client
   7. Submit review of client
-  8. View past and upcoming jobs - mvp
+  8. View past and upcoming jobs  
 
 ### Stretch Goals:
 1. Client:  
-  a. Edit address, contact info and password - stretch
-  b. Calendar function - stretch
+  a. Edit address, contact info and password  
+  b. Calendar function  
 2. Helping Hand:  
-  a. Edit address, contact info and password - stretch
+  a. Edit address, contact info and password  
 
 
 
