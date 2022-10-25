@@ -14,8 +14,8 @@ A user will be able to sign up as a Client or a Helping Hand. Clients will be ab
   2. Submits a request, specifying the type (car wash, house work, etc) -mvp
   3. Submits payment for job 
   4. Submit reviews for the Helping Hand(Star rating?) - mvp
-  5. View own rating - mvp
-  a. High rating and high request amount = preferred client status
+  5. View own rating - mvp  
+  a. High rating and high request amount = preferred client status  
   b. Some star on profile
   6. View past and active requests - mvp
   7. Can view/accept/deny bids on requests - mvp
