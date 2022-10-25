@@ -10,7 +10,7 @@ A user will be able to sign up as a Client or a Helping Hand. Clients will be ab
   
 ### User Stories:
 1. Client: 
-  * Log in/register
+* Log in/register
   * Submits a request, specifying the type (car wash, house work, etc) -mvp
   * Submits payment for job 
   * Submit reviews for the Helping Hand(Star rating?) - mvp
