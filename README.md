@@ -20,22 +20,22 @@ A user will be able to sign up as a Client or a Helping Hand. Clients will be ab
   3. Can decline jobs after accepting   
   a. Cannot cancel within 24 hours
   6. High amount of jobs completed and high rating = preferred operative  
-  a. Some symbol, different than the client
-  7. Submit review of client
+  a. Some symbol, different than the client  
+  7. Submit review of client  
   8. View past and upcoming jobs  
 
 ### Stretch Goals:
 1. Client:  
   a. Edit address, contact info and password  
   b. Calendar function  
-  c. View own rating
+  c. View own rating  
   a. High rating and high request amount = preferred client status  
-  b. Some star on profile
+  b. Some star on profile  
 2. Helping Hand:  
-  a. Edit address, contact info and password 
-  b. View own rating
+  a. Edit address, contact info and password  
+  b. View own rating  
   c. High rating and high request amount = preferred client status  
-  d. Some star on profile
+  d. Some star on profile  
 
 
 
