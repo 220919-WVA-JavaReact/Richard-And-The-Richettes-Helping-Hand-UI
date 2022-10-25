@@ -42,21 +42,21 @@ A user will be able to sign up as a Client or a Helping Hand. Clients will be ab
 ### Classes: Client and Helping Hand
 
 1. Tables:
-  a. Client
+  1. Client
     * Client ID
     * Username
     * Password
     * Full Address
     * Contact Info
     * Rating (5 star default)
-  b. Helper
+  2. Helper
     * helper_id
     * Username
     * Password
     * Full Address
     * Contact Info
     * Rating (5 star default)
-  c. Request
+  3. Request
     * Job ID
     * Title
     * Client user
@@ -65,9 +65,9 @@ A user will be able to sign up as a Client or a Helping Hand. Clients will be ab
     * Deadline
     * Client Rating
     * Mission accomplished(boolean - default false)
-  d. Bids
+  4. Bids
     * Bid ID
     * Links with Request via Job ID
     * Links with Helping Hand via User
     * Bid - amount
-  e. Request Bid
+  5. Request Bid
