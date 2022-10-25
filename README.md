@@ -9,26 +9,26 @@ The client will choose from the available bids and the request will be marked as
 A user will be able to sign up as a Client or a Helping Hand. Clients will be able to submit requests for tasks, with deadlines, they need help accomplishing. Helping Hands will be able to place bids on requests, setting a price they deem
   
 ### User Stories:
-1. Client: 
-* Log in/register
-  * Submits a request, specifying the type (car wash, house work, etc) -mvp
-  * Submits payment for job 
-  * Submit reviews for the Helping Hand(Star rating?) - mvp
-  * View own rating - mvp
-    1. High rating and high request amount = preferred client status
-    2. Some star on profile
-  * View past and active requests - mvp
-  * Can view/accept/deny bids on requests - mvp
-2. Helping Hand: 
-  * Log in/register
-  * Places bids on jobs - mvp
-  * Can decline jobs after accepting 
-  * Cannot cancel within 24 hours
-  * Can view own rating - mvp
-  * High amount of jobs completed and high rating = preferred operative
-    1. Some symbol, different than the client
-  * Submit review of client
-  * View past and upcoming jobs - mvp
+#### Client: 
+  1. Log in/register
+  2. Submits a request, specifying the type (car wash, house work, etc) -mvp
+  3. Submits payment for job 
+  4. Submit reviews for the Helping Hand(Star rating?) - mvp
+  5. View own rating - mvp
+    * High rating and high request amount = preferred client status
+    * Some star on profile
+  6. View past and active requests - mvp
+  7. Can view/accept/deny bids on requests - mvp
+#### Helping Hand: 
+  1. Log in/register
+  2. Places bids on jobs - mvp
+  3. Can decline jobs after accepting 
+  4. Cannot cancel within 24 hours
+  5. Can view own rating - mvp
+  6. High amount of jobs completed and high rating = preferred operative
+    * Some symbol, different than the client
+  7. Submit review of client
+  8. View past and upcoming jobs - mvp
 
 ### Stretch Goals:
 1. Client:
