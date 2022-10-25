@@ -29,3 +29,45 @@ A user will be able to sign up as a Client or a Helping Hand. Clients will be ab
     1. Some symbol, different than the client
   * Submit review of client
   * View past and upcoming jobs - mvp
+
+### Stretch Goals:
+1. Client:
+  * Edit address, contact info and password - stretch
+  * Calendar function - stretch
+2. Helping Hand:
+  * Edit address, contact info and password - stretch
+
+
+
+### Classes: Client and Helping Hand
+
+1. Tables:
+  a. Client
+    * Client ID
+    * Username
+    * Password
+    * Full Address
+    * Contact Info
+    * Rating (5 star default)
+  b. Helper
+    * helper_id
+    * Username
+    * Password
+    * Full Address
+    * Contact Info
+    * Rating (5 star default)
+  c. Request
+    * Job ID
+    * Title
+    * Client user
+    * Client Address
+    * Description
+    * Deadline
+    * Client Rating
+    * Mission accomplished(boolean - default false)
+  d. Bids
+    * Bid ID
+    * Links with Request via Job ID
+    * Links with Helping Hand via User
+    * Bid - amount
+  e. Request Bid
