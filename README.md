@@ -49,25 +49,25 @@ A user will be able to sign up as a Client or a Helping Hand. Clients will be ab
   d. Full Address  
   e. Contact Info  
   f. Rating (5 star default)  
-2. Helper
-  a. helper_id
-  b. Username
-  c. Password
-  d. Full Address
-  e. Contact Info
-  f. Rating (5 star default)
-3. Request
-  a. Job ID
-  b. Title
-  c. Client user
-  d. Client Address
-  e. Description
-  f. Deadline
-  g. Client Rating
-  h. Mission accomplished(boolean - default false)
-4. Bids
-  a. Bid ID
-  b. Links with Request via Job ID
-  c. Links with Helping Hand via User
-  d. Bid - amount
-5. Request Bid
+2. Helper  
+  a. helper_id  
+  b. Username  
+  c. Password  
+  d. Full Address  
+  e. Contact Info  
+  f. Rating (5 star default)  
+3. Request  
+  a. Job ID  
+  b. Title  
+  c. Client user  
+  d. Client Address  
+  e. Description  
+  f. Deadline  
+  g. Client Rating  
+  h. Mission accomplished(boolean - default false)  
+4. Bids  
+  a. Bid ID  
+  b. Links with Request via Job ID  
+  c. Links with Helping Hand via User  
+  d. Bid - amount  
+5. Request Bid  
