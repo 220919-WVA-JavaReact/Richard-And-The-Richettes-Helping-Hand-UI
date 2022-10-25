@@ -43,9 +43,9 @@ A user will be able to sign up as a Client or a Helping Hand. Clients will be ab
 
 1. Tables:
   1. Client
-    * Client ID
-    * Username
-    * Password
+  * Client ID
+  * Username
+  * Password
     * Full Address
     * Contact Info
     * Rating (5 star default)
