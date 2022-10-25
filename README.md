@@ -34,8 +34,8 @@ A user will be able to sign up as a Client or a Helping Hand. Clients will be ab
 2. Helping Hand:  
   a. Edit address, contact info and password 
   b. View own rating
-  a. High rating and high request amount = preferred client status  
-  b. Some star on profile
+  c. High rating and high request amount = preferred client status  
+  d. Some star on profile
 
 
 
