@@ -30,7 +30,7 @@ function Register(props: IRegisterProps) {
   async function register(e: SyntheticEvent) {
     e.preventDefault();
     try {
-      let res = await fetch("http://localhost:8080/users", {
+      let res = await fetch("http://localhost:8080/client", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
