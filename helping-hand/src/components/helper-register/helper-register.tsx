@@ -1,16 +1,16 @@
 import React, { SyntheticEvent, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { Client } from "../../models/client";
+import { Helper } from "../../models/helper";
 import HHAPI from "../../utils/utility";
 import { Link } from "react-router-dom";
 
 
 interface IRegisterProps {
-  currentUser: Client | undefined;
-  setCurrentUser: (nextUser: Client) => void;
+  currentUser: Helper | undefined;
+  setCurrentUser: (nextUser: Helper) => void;
 }
 
-function ClientRegister(props: IRegisterProps) {
+function HelperRegister(props: IRegisterProps) {
   const [first, setFirst] = useState("");
   const [last, setLast] = useState("");
   const [username, setUsername] = useState("");
@@ -29,10 +29,10 @@ function ClientRegister(props: IRegisterProps) {
     setPassword((e.target as HTMLInputElement).value);
   };
 
-  async function registerForClient(e: SyntheticEvent) {
+  async function registerForHelper(e: SyntheticEvent) {
     // e.preventDefault();
     try {
-      let res = await fetch("http://localhost:8080/client", {
+      let res = await fetch("http://localhost:8080/helper", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,7 +63,7 @@ function ClientRegister(props: IRegisterProps) {
     <Navigate to="/dashboard" />
   ) : (
     <div>
-      <p>Client Sign up</p>
+      <p>Helper Sign up</p>
 
       <input
       className="text-black"
@@ -74,10 +74,10 @@ function ClientRegister(props: IRegisterProps) {
       <input className="text-black" placeholder="Last Name" type="last name" onChange={updateLast} /><br/><br/>
       <input className="text-black" placeholder="Username" type="username" onChange={updateUName} /><br/><br/>
       <input className="text-black" placeholder="Password" type="password" onChange={updatePass} /><br/><br/>
-      <a href="/" className="btn btn-secondary" onClick={registerForClient}>Register</a>
+      <a href="/" className="btn btn-secondary" onClick={registerForHelper}>Register</a>
 
     </div>
   );
 }
 
-export default ClientRegister;
+export default HelperRegister;
