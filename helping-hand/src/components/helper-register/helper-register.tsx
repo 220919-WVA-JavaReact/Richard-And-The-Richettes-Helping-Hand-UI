@@ -59,9 +59,7 @@ function HelperRegister(props: IRegisterProps) {
     }
   }
 
-  return props.currentUser ? (
-    <Navigate to="/dashboard" />
-  ) : (
+  return (
     <div>
       <p>Helper Sign up</p>
 
