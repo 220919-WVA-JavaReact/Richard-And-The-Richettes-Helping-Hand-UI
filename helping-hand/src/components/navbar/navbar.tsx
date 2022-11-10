@@ -47,14 +47,22 @@ function NavBar() {
             </div>
           </li>
           <li>
-          <a href="#my-modal-7" className="btn">Client Login</a>
+            <a href="#my-modal-7" className="btn">Client Login</a>
             <div className="modal" id="my-modal-7">
                 <div className="modal-box max-w-[15%]">
+            {/* <input type="checkbox" id="my-modal-7" className="modal-toggle" /> */}
+
                     <ClientLogin currentUser={loggedInClient} setCurrentUser={setLoggedInClient}/>
                 </div>
             </div>
           </li>
         </ul>
+        <div className="dropdown dropdown-end">
+        <label tabIndex={0} className="btn btn-ghost rounded-btn">Dropdown</label>
+        <ul tabIndex={0} className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+            
+        </ul>
+      </div>
       </div>
     </div>
   );

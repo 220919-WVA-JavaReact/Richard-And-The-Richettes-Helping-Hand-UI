@@ -53,7 +53,8 @@ export default function ClientLogin(props: ILoginProps) {
   };
 
   return (
-    <div>
+      <div >
+
       <p>Client Login</p>
 
       <input
@@ -75,9 +76,8 @@ export default function ClientLogin(props: ILoginProps) {
       <a href="/" className="btn btn-secondary" onClick={clientLogin}>
         Login
       </a>
-      <div className="modal-action">
+      <a href="#" className="btn">Close</a>
       </div>
-    </div>
   );
 }
 

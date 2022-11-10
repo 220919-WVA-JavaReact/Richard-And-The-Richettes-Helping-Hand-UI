@@ -75,6 +75,7 @@ function ClientRegister(props: IRegisterProps) {
       <input className="text-black" placeholder="Username" type="username" onChange={updateUName} /><br/><br/>
       <input className="text-black" placeholder="Password" type="password" onChange={updatePass} /><br/><br/>
       <a href="/" className="btn btn-secondary" onClick={registerForClient}>Register</a>
+      <a href="#" className="btn">Close</a>
 
     </div>
   );
