@@ -3,6 +3,7 @@ import "./navbar.css";
 import { Link } from "react-router-dom";
 import ClientRegister from '../client-register/client-register';
 import HelperRegister from '../helper-register/helper-register';
+import ClientLogin from "../client-login/client-login";
 import React, { useState } from 'react';
 import {Client} from "../../models/client";
 import {Helper} from '../../models/helper';
@@ -10,6 +11,7 @@ import {Helper} from '../../models/helper';
 function NavBar() {
     const [authUserClient, setAuthUserClient] = useState<Client>();
     const [authUserHelper, setAuthUserHelper] = useState<Helper>();
+    const [loggedInClient, setLoggedInClient] = useState<Client>();
 
 
 
@@ -29,7 +31,7 @@ function NavBar() {
             <div className="modal" id="my-modal-5">
             <div className="modal-box max-w-[15%]">
                 <div className="modal-action">
-                <ClientRegister currentUser={authUserClient} setCurrentUser={setAuthUserClient}/>
+                    <ClientRegister currentUser={authUserClient} setCurrentUser={setAuthUserClient}/>
                 </div>
             </div>
             </div>
@@ -39,9 +41,17 @@ function NavBar() {
             <div className="modal" id="my-modal-6">
             <div className="modal-box max-w-[15%]">
                 <div className="modal-action">
-                <HelperRegister currentUser={authUserHelper} setCurrentUser={setAuthUserHelper}/>
+                    <HelperRegister currentUser={authUserHelper} setCurrentUser={setAuthUserHelper}/>
                 </div>
             </div>
+            </div>
+          </li>
+          <li>
+          <a href="#my-modal-7" className="btn">Client Login</a>
+            <div className="modal" id="my-modal-7">
+                <div className="modal-box max-w-[15%]">
+                    <ClientLogin currentUser={loggedInClient} setCurrentUser={setLoggedInClient}/>
+                </div>
             </div>
           </li>
         </ul>
