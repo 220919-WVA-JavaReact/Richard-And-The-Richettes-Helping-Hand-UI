@@ -23,47 +23,30 @@ function NavBar() {
         </Link>
       </div>
 
-
-      <div className="flex-none">
-        <ul className="menu menu-horizontal p-0">
-          <li>
-          <a href="#my-modal-5" className="btn btn-secondary text-black">Client Register</a>
-            <div className="modal" id="my-modal-5">
-            <div className="modal-box max-w-[15%]">
-                <div className="modal-action">
-                    <ClientRegister currentUser={authUserClient} setCurrentUser={setAuthUserClient}/>
-                </div>
+    <div className="flex-none px-10">
+            <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-primary rounded-btn px-10 mr-5">Login</label>
+            <ul tabIndex={0} className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+                <li>
+                    <a href="#my-modal-7" className="btn btn-secondary text-black">Client Login</a><br/>
+                </li>
+                <li>
+                    <a href="#my-modal-8" className='btn btn-secondary text-black'>Helper Login</a>
+                </li>
+            </ul>
             </div>
-            </div>
-          </li>
-          <li>
-          <a href="#my-modal-6" className="btn btn-secondary text-black">Helper Register</a>
-            <div className="modal" id="my-modal-6">
-            <div className="modal-box max-w-[15%]">
-                <div className="modal-action">
-                    <HelperRegister currentUser={authUserHelper} setCurrentUser={setAuthUserHelper}/>
-                </div>
-            </div>
-            </div>
-          </li>
-          <li>
-            <a href="#my-modal-7" className="btn">Client Login</a>
-            <div className="modal" id="my-modal-7">
-                <div className="modal-box max-w-[15%]">
-            {/* <input type="checkbox" id="my-modal-7" className="modal-toggle" /> */}
-
-                    <ClientLogin currentUser={loggedInClient} setCurrentUser={setLoggedInClient}/>
-                </div>
-            </div>
-          </li>
-        </ul>
         <div className="dropdown dropdown-end">
-        <label tabIndex={0} className="btn btn-ghost rounded-btn">Dropdown</label>
+        <label tabIndex={0} className="btn btn-primary rounded-btn px-8">Register</label>
         <ul tabIndex={0} className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
-            
+            <li>
+                <a href="#my-modal-5" className="btn btn-secondary text-black">Client Register</a><br/>
+            </li>
+            <li>
+                <a href="#my-modal-6" className="btn btn-secondary text-black">Helper Register</a>
+            </li>
         </ul>
-      </div>
-      </div>
+        </div>
+    </div>
     </div>
   );
 }

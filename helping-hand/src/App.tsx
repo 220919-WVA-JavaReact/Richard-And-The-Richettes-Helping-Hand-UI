@@ -4,10 +4,17 @@ import './App.css';
 import Landing from "./components/landing/landing";
 import NavBar from "./components/navbar/navbar";
 import {Client} from "./models/client";
-// import Register from "./components/client-register/client-register";
+import {Helper} from "./models/helper";
+import HelperLogin from './components/helper-login/helper-login';
+import HelperRegister from './components/helper-register/helper-register';
+import ClientRegister from './components/client-register/client-register';
+import ClientLogin from './components/client-login/client-login';
 
 function App() {
-  const [authUser, setAuthUser] = useState<Client>();
+  const [loggedInHelper, setloggedInHelper] = useState<Helper>();
+  const [authUserHelper, setAuthUserHelper] = useState<Helper>();
+  const [authUserClient, setAuthUserClient] = useState<Client>();
+  const [loggedInClient, setLoggedInClient] = useState<Client>();
 
 
   return (
@@ -16,6 +23,33 @@ function App() {
       <Routes>
       <Route path="/" element={<Landing />}></Route>
       </Routes>
+      <div className="modal" id="my-modal-6">
+        <div className="modal-box max-w-[15%]">
+            <div className="modal-action">
+                <HelperRegister currentUser={authUserHelper} setCurrentUser={setAuthUserHelper}/>
+            </div>
+        </div>
+      </div>
+
+      <div className="modal" id="my-modal-5">
+      <div className="modal-box max-w-[15%]">
+          <div className="modal-action">
+              <ClientRegister currentUser={authUserClient} setCurrentUser={setAuthUserClient}/>
+          </div>
+      </div>
+      </div>
+
+      <div className="modal" id="my-modal-7">
+          <div className="modal-box max-w-[15%]">
+              <ClientLogin currentUser={loggedInClient} setCurrentUser={setLoggedInClient}/>
+          </div>
+      </div>
+
+      <div className='modal' id='my-modal-8'>
+        <div className='modal-box max-w-[15%]'>
+            <HelperLogin currentUser={loggedInHelper} setCurrentUser={setloggedInHelper}/>
+        </div>
+      </div>
   </BrowserRouter>
   );
 }

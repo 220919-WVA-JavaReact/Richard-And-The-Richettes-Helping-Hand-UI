@@ -44,24 +44,24 @@ function ClientRegister(props: IRegisterProps) {
           password,
         }),
       });
-      console.log(res);
 
       if (res.status !== 201) {
         console.log(res);
         console.log(res.status);
         console.log("could not connect");
       } else {
-        const result = await res.json();
-        return result;
+        const userObject = await res.json();
+        props.setCurrentUser(userObject);
+        console.log("hi")
+        console.log(props?.currentUser?.id)
       }
     } catch (err) {
       console.log("There was an error communicating with the API.");
     }
+    console.log(props?.currentUser?.id)
   }
 
-  return props.currentUser ? (
-    <Navigate to="/dashboard" />
-  ) : (
+  return (
     <div>
       <p>Client Sign up</p>
 
@@ -74,7 +74,7 @@ function ClientRegister(props: IRegisterProps) {
       <input className="text-black" placeholder="Last Name" type="last name" onChange={updateLast} /><br/><br/>
       <input className="text-black" placeholder="Username" type="username" onChange={updateUName} /><br/><br/>
       <input className="text-black" placeholder="Password" type="password" onChange={updatePass} /><br/><br/>
-      <a href="/" className="btn btn-secondary" onClick={registerForClient}>Register</a>
+      <a href={`/client/${props?.currentUser?.id}`} className="btn btn-secondary" onClick={registerForClient}>Register</a>
       <a href="#" className="btn">Close</a>
 
     </div>

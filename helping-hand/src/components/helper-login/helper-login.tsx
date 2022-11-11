@@ -1,18 +1,15 @@
 import { SyntheticEvent, useState } from "react";
-import { Client } from "../../models/client";
-import {Navigate} from 'react-router-dom';
+import { Helper } from "../../models/helper";
 
 interface ILoginProps {
-  currentUser: Client | undefined;
-  setCurrentUser: (nextUser: Client) => void;
+  currentUser: Helper | undefined;
+  setCurrentUser: (nextUser: Helper) => void;
 }
 
-export default function ClientLogin(props: ILoginProps) {
+export default function HelperLogin(props: ILoginProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
-
 
   let updateUName = (e: SyntheticEvent) => {
     setUsername((e.target as HTMLInputElement).value);
@@ -22,13 +19,13 @@ export default function ClientLogin(props: ILoginProps) {
     setPassword((e.target as HTMLInputElement).value);
   };
 
-  let clientLogin = async (e: SyntheticEvent) => {
+  let helperLogin = async (e: SyntheticEvent) => {
     // e.preventDefault();
     if (!username || !password) {
       console.log("Please provide a username and a password");
     } else {
       try {
-        let response = await fetch("http://localhost:8080/client-auth", {
+        let response = await fetch("http://localhost:8080/helper-auth", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -37,15 +34,13 @@ export default function ClientLogin(props: ILoginProps) {
         });
         if (response.status === 200) {
             let token = response.headers.get('Authorization');
-            // console.log(response);
+            console.log(response);
             if(token){
                 sessionStorage.setItem('token', token);
             }
             const userObject = await response.json();
             props.setCurrentUser(userObject);
             console.log(userObject);
-            console.log(userObject.id);
-
         } else {
           setErrorMessage(
             `Could not validate credentials : ERROR CODE ${response.status}`
@@ -55,13 +50,12 @@ export default function ClientLogin(props: ILoginProps) {
         console.log(err);
       }
     }
-    console.log(props?.currentUser?.id)
   };
 
   return (
       <div >
 
-      <p>Client Login</p>
+      <p>Helper Login</p>
 
       <input
         className="text-black"
@@ -79,12 +73,10 @@ export default function ClientLogin(props: ILoginProps) {
       />
       <br />
       <br />
-      <a href={`/client/${props?.currentUser?.id}`} className="btn btn-secondary" onClick={clientLogin}>
+      <a href={`/helper/${props?.currentUser?.id}`} className="btn btn-secondary" onClick={helperLogin}>
         Login
       </a>
       <a href="#" className="btn">Close</a>
       </div>
   );
 }
-
-// export default ClientLogin;
