@@ -8,6 +8,9 @@ import {Helper} from "./models/helper";
 import {Bid} from "./models/bid";
 import {Request} from "./models/request";
 import CreateBid from "./components/create-bid/create-bid";
+import UpdateAmount from "./components/update-amount/update-amount";
+import UpdateStatus from "./components/update-bid-status/update-bid-status";
+
 
 
 // import Register from "./components/client-register/client-register";
@@ -28,6 +31,8 @@ function App() {
       <Routes>
       <Route path="/" element={<Landing />}></Route>
       <Route path="/bids" element={<CreateBid currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
+      <Route path="/bids" element={<UpdateAmount currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
+      <Route path="/bids" element={<UpdateStatus currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInClient={loggedInClient} currentRequest={currentRequest}/>}></Route>
       </Routes>
   </BrowserRouter>
   );
