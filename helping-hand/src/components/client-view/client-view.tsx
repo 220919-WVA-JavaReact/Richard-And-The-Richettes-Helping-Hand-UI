@@ -3,7 +3,7 @@ import { Helper } from '../../models/helper';
 import { GridColDef } from '@mui/x-data-grid';
 import { Navigate } from 'react-router-dom';
 
-interface IHelperView {
+interface IClientView {
     currentUser: Helper | undefined;
     setCurrentUser: (nextUser: Helper) => void;
 }
@@ -16,13 +16,13 @@ const columns: GridColDef[] = [
     { field: 'deadline', headerName: 'Deadline', width: 200 }
 ];
 
-export default function HelperView(props: IHelperView){
+export default function clientView(props: IClientView){
 
     const [reequests, setRequests] = useState<Request[]>([] as Request[]);
     const [message, setErrorMessage] = useState('');
 
     useEffect(() => {
-        HelperViewRequests();
+        clientViewRequests();
         return function(){
 
         };
@@ -32,12 +32,12 @@ export default function HelperView(props: IHelperView){
 
     // let HelperViewRequests = async (e: SyntheticEvent) => {
         // e.preventDefault();
-        async function HelperViewRequests(){
+        async function clientViewRequests(){
         try{
             let res = await fetch('http://localhost:8080/helper/requests', {
                 method: 'GET',
                 headers: {
-                    'Authorization':
+                    'Authorization': 
                 }
             });
 
@@ -54,4 +54,3 @@ export default function HelperView(props: IHelperView){
     return (
         
     )
-}
