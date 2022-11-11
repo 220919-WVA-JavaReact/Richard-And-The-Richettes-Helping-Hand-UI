@@ -1,9 +1,6 @@
 import React, { SyntheticEvent, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Client } from "../../models/client";
-import HHAPI from "../../utils/utility";
-import { Link } from "react-router-dom";
-
 
 interface IRegisterProps {
   currentUser: Client | undefined;
@@ -15,6 +12,12 @@ function ClientRegister(props: IRegisterProps) {
   const [last, setLast] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const setCurrentUser = props.setCurrentUser;
+  const navigate = useNavigate();
+
+  const settingUser = (user: Client) => {
+    setCurrentUser(user);
+  };
 
   const updateFirst = (e: SyntheticEvent) => {
     setFirst((e.target as HTMLInputElement).value);
@@ -51,14 +54,14 @@ function ClientRegister(props: IRegisterProps) {
         console.log("could not connect");
       } else {
         const userObject = await res.json();
-        props.setCurrentUser(userObject);
-        console.log("hi")
-        console.log(props?.currentUser?.id)
+        settingUser(userObject);
+        console.log(userObject.id);
+        document?.getElementById("close")?.click();
+        return navigate(`/client/${userObject.id}`);
       }
     } catch (err) {
       console.log("There was an error communicating with the API.");
     }
-    console.log(props?.currentUser?.id)
   }
 
   return (
@@ -66,17 +69,43 @@ function ClientRegister(props: IRegisterProps) {
       <p>Client Sign up</p>
 
       <input
-      className="text-black"
+        className="text-black"
         placeholder="First Name"
         type="first name"
         onChange={updateFirst}
-        /><br/><br/>
-      <input className="text-black" placeholder="Last Name" type="last name" onChange={updateLast} /><br/><br/>
-      <input className="text-black" placeholder="Username" type="username" onChange={updateUName} /><br/><br/>
-      <input className="text-black" placeholder="Password" type="password" onChange={updatePass} /><br/><br/>
-      <a href={`/client/${props?.currentUser?.id}`} className="btn btn-secondary" onClick={registerForClient}>Register</a>
-      <a href="#" className="btn">Close</a>
-
+      />
+      <br />
+      <br />
+      <input
+        className="text-black"
+        placeholder="Last Name"
+        type="last name"
+        onChange={updateLast}
+      />
+      <br />
+      <br />
+      <input
+        className="text-black"
+        placeholder="Username"
+        type="username"
+        onChange={updateUName}
+      />
+      <br />
+      <br />
+      <input
+        className="text-black"
+        placeholder="Password"
+        type="password"
+        onChange={updatePass}
+      />
+      <br />
+      <br />
+      <a href="#" className="btn btn-secondary" onClick={registerForClient}>
+        Register
+      </a>
+      <a href="#" id="close" className="btn">
+        Close
+      </a>
     </div>
   );
 }

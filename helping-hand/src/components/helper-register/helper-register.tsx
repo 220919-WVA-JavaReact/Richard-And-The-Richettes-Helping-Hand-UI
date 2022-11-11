@@ -1,8 +1,6 @@
 import React, { SyntheticEvent, useState } from "react";
-import { Navigate } from "react-router-dom";
 import { Helper } from "../../models/helper";
-import HHAPI from "../../utils/utility";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface IRegisterProps {
   currentUser: Helper | undefined;
@@ -14,6 +12,12 @@ function HelperRegister(props: IRegisterProps) {
   const [last, setLast] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const setCurrentUser = props.setCurrentUser;
+  const navigate = useNavigate();
+
+  const settingUser = (user: Helper) => {
+    setCurrentUser(user);
+  };
 
   const updateFirst = (e: SyntheticEvent) => {
     setFirst((e.target as HTMLInputElement).value);
@@ -50,9 +54,10 @@ function HelperRegister(props: IRegisterProps) {
         console.log("could not connect");
       } else {
         const userObject = await res.json();
-        props.setCurrentUser(userObject);
-        console.log("hi");
-        console.log(props?.currentUser?.id);
+        settingUser(userObject);
+        console.log(userObject.id);
+        document?.getElementById("close")?.click();
+        return navigate(`/helper/${userObject.id}`);
       }
     } catch (err) {
       console.log("There was an error communicating with the API.");
@@ -96,11 +101,7 @@ function HelperRegister(props: IRegisterProps) {
       />
       <br />
       <br />
-      <a
-        href={`/helper/${props?.currentUser?.id}`}
-        className="btn btn-secondary"
-        onClick={registerForHelper}
-      >
+      <a href="#" className="btn btn-secondary" onClick={registerForHelper}>
         Register
       </a>
       <a href="#" className="btn">

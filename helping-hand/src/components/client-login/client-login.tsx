@@ -1,6 +1,6 @@
 import { SyntheticEvent, useState } from "react";
 import { Client } from "../../models/client";
-import {Navigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 interface ILoginProps {
   currentUser: Client | undefined;
@@ -11,8 +11,12 @@ export default function ClientLogin(props: ILoginProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const setCurrentUser = props.setCurrentUser;
+  const navigate = useNavigate();
 
-
+  const settingUser = (user: Client) => {
+    setCurrentUser(user);
+  };
 
   let updateUName = (e: SyntheticEvent) => {
     setUsername((e.target as HTMLInputElement).value);
@@ -23,7 +27,7 @@ export default function ClientLogin(props: ILoginProps) {
   };
 
   let clientLogin = async (e: SyntheticEvent) => {
-    // e.preventDefault();
+    e.preventDefault();
     if (!username || !password) {
       console.log("Please provide a username and a password");
     } else {
@@ -36,16 +40,17 @@ export default function ClientLogin(props: ILoginProps) {
           body: JSON.stringify({ username, password }),
         });
         if (response.status === 200) {
-            let token = response.headers.get('Authorization');
-            // console.log(response);
-            if(token){
-                sessionStorage.setItem('token', token);
-            }
-            const userObject = await response.json();
-            props.setCurrentUser(userObject);
-            console.log(userObject);
-            console.log(userObject.id);
-
+          let token = response.headers.get("Authorization");
+          // console.log(response);
+          if (token) {
+            sessionStorage.setItem("token", token);
+          }
+          const userObject = await response.json();
+          settingUser(userObject);
+          console.log(userObject);
+          console.log(userObject.id);
+          document?.getElementById('close')?.click();
+          return navigate(`/client/${userObject.id}`);
         } else {
           setErrorMessage(
             `Could not validate credentials : ERROR CODE ${response.status}`
@@ -55,12 +60,10 @@ export default function ClientLogin(props: ILoginProps) {
         console.log(err);
       }
     }
-    console.log(props?.currentUser?.id)
   };
 
   return (
-      <div >
-
+    <div>
       <p>Client Login</p>
 
       <input
@@ -79,11 +82,13 @@ export default function ClientLogin(props: ILoginProps) {
       />
       <br />
       <br />
-      <a href={`/client/${props?.currentUser?.id}`} className="btn btn-secondary" onClick={clientLogin}>
+      <a href="#" className="btn btn-secondary" onClick={clientLogin}>
         Login
       </a>
-      <a href="#" className="btn">Close</a>
-      </div>
+      <a href="#" id='close' className="btn">
+        Close
+      </a>
+    </div>
   );
 }
 
