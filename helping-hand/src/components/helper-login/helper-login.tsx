@@ -3,15 +3,15 @@ import { Helper } from "../../models/helper";
 import { useNavigate } from "react-router-dom";
 
 interface ILoginProps {
-  currentUser: Helper | undefined;
-  setCurrentUser: (nextUser: Helper) => void;
+  currentHelper: Helper | undefined;
+  setCurrentHelper: (nextUser: Helper) => void;
 }
 
 export default function HelperLogin(props: ILoginProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const setCurrentUser = props.setCurrentUser;
+  const setCurrentUser = props.setCurrentHelper;
   const navigate = useNavigate();
 
   const settingUser = (user: Helper) => {

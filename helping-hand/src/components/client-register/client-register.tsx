@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Client } from "../../models/client";
 
 interface IRegisterProps {
-  currentUser: Client | undefined;
-  setCurrentUser: (nextUser: Client) => void;
+  currentClient: Client | undefined;
+  setCurrentClient: (nextUser: Client) => void;
 }
 
 function ClientRegister(props: IRegisterProps) {
@@ -12,7 +12,7 @@ function ClientRegister(props: IRegisterProps) {
   const [last, setLast] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const setCurrentUser = props.setCurrentUser;
+  const setCurrentUser = props.setCurrentClient;
   const navigate = useNavigate();
 
   const settingUser = (user: Client) => {
@@ -33,7 +33,7 @@ function ClientRegister(props: IRegisterProps) {
   };
 
   async function registerForClient(e: SyntheticEvent) {
-    // e.preventDefault();
+    e.preventDefault();
     try {
       let res = await fetch("http://localhost:8080/client", {
         method: "POST",

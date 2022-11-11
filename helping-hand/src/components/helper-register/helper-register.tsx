@@ -3,8 +3,8 @@ import { Helper } from "../../models/helper";
 import { useNavigate } from "react-router-dom";
 
 interface IRegisterProps {
-  currentUser: Helper | undefined;
-  setCurrentUser: (nextUser: Helper) => void;
+  currentHelper: Helper | undefined;
+  setCurrentHelper: (nextUser: Helper) => void;
 }
 
 function HelperRegister(props: IRegisterProps) {
@@ -12,7 +12,7 @@ function HelperRegister(props: IRegisterProps) {
   const [last, setLast] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const setCurrentUser = props.setCurrentUser;
+  const setCurrentUser = props.setCurrentHelper;
   const navigate = useNavigate();
 
   const settingUser = (user: Helper) => {
@@ -33,7 +33,7 @@ function HelperRegister(props: IRegisterProps) {
   };
 
   async function registerForHelper(e: SyntheticEvent) {
-    // e.preventDefault();
+    e.preventDefault();
     try {
       let res = await fetch("http://localhost:8080/helper", {
         method: "POST",
@@ -62,7 +62,6 @@ function HelperRegister(props: IRegisterProps) {
     } catch (err) {
       console.log("There was an error communicating with the API.");
     }
-    console.log(props?.currentUser?.id);
   }
 
   return (

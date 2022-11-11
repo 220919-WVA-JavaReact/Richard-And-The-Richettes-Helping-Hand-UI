@@ -3,15 +3,15 @@ import { Client } from "../../models/client";
 import { useNavigate } from "react-router-dom";
 
 interface ILoginProps {
-  currentUser: Client | undefined;
-  setCurrentUser: (nextUser: Client) => void;
+  currentClient: Client | undefined;
+  setCurrentClient: (nextUser: Client) => void;
 }
 
 export default function ClientLogin(props: ILoginProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const setCurrentUser = props.setCurrentUser;
+  const setCurrentUser = props.setCurrentClient;
   const navigate = useNavigate();
 
   const settingUser = (user: Client) => {

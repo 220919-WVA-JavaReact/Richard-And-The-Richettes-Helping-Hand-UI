@@ -6,7 +6,7 @@ import './landing.css';
 function Landing(){
     return(
         <div className='land'>
-            testing landing page.
+            Currently under construction.
         </div>
     )
 }
