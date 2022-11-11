@@ -42,7 +42,7 @@ function UpdateAmount(props: IUpdateAmountProps){
                 console.log("could not connect");
             } else {
                 const result = await bid.json();
-                return <Navigate to="/helper-profile" />;
+                return <Navigate to="/helper/id" />;
             }
         } catch (err) {
             console.log("There was an error communicating with the API");

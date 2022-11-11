@@ -44,7 +44,7 @@ function UpdateStatus(props: IUpdateStatusProps){
                 console.log("could not connect");
             } else {
                 const result = await bid.json();
-                return <Navigate to="/client-profile" />;
+                return <Navigate to="/client/id" />;
             }
         } catch (err) {
             console.log("There was an error communicating with the API.");
