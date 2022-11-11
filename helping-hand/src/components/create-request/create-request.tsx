@@ -7,15 +7,15 @@ import { Request } from '../../models/request';
 
 
 
-// interface ICreateReqProps {
-//     currentRequest: Request | undefined;
-//     setCurrentRequest: (nextRequest: Request) => void;
-// }
-
 interface ICreateReqProps {
-    current: Client | undefined;
-    setCurrentClient: (nextClient: Client) => void;
+    currentRequest: Request | undefined;
+    setCurrentRequest: (nextRequest: Request) => void;
 }
+
+// interface ICreateReqProps {
+//     current: Client | undefined;
+//     setCurrentClient: (nextClient: Client) => void;
+// }
 
 function CreateRequest(props: ICreateReqProps){
     const [title, setTitle] = useState("");
@@ -35,7 +35,7 @@ function CreateRequest(props: ICreateReqProps){
     let clientCreateRequest = async (e: SyntheticEvent) => {
         e.preventDefault();
         try{
-            let res = await fetch("http://localhost:8080/requests", {
+            let res = await fetch("http://localhost:8080/client/create-request", {
                 method: "POST",
                 headers: {"Content-Type": "application/json",},
                 body: JSON.stringify({
@@ -60,9 +60,6 @@ function CreateRequest(props: ICreateReqProps){
     }
 
         return  (
-            // format this to have a form for request
-        //     <Navigate to="/" />
-        // ) : (
             <div>
                 <p>Create a Request</p>
 
