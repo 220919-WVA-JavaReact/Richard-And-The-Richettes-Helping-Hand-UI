@@ -38,6 +38,7 @@ function NavBar(props: INavbarProps) {
 
     return navigate("/");
   }
+  console.log(props)
 
   const theCondition =<>
   <div className="flex-none px-10">

@@ -41,7 +41,7 @@ export default function ClientLogin(props: ILoginProps) {
         });
         if (response.status === 200) {
           let token = response.headers.get("Authorization");
-          // console.log(response);
+          console.log(response);
           if (token) {
             sessionStorage.setItem("token", token);
           }
@@ -56,6 +56,7 @@ export default function ClientLogin(props: ILoginProps) {
             `Could not validate credentials : ERROR CODE ${response.status}`
           );
         }
+        console.log(response);
       } catch (err) {
         console.log(err);
       }
