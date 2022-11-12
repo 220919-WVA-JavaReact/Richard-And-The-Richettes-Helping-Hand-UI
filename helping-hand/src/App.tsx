@@ -4,9 +4,11 @@ import "./App.css";
 import Landing from "./components/landing/landing";
 import NavBar from "./components/navbar/navbar";
 import { Request } from './models/request';
-import CreateRequest from './components/create-request/create-request';
 import { Client } from "./models/client";
 import { Helper } from "./models/helper";
+import ClientProfile from './components/client/clientProfile';
+import HelperProfile from './components/helper/helperProfile';
+import CreateRequest from './components/create-request/create-request';
 import HelperLogin from "./components/helper-login/helper-login";
 import HelperRegister from "./components/helper-register/helper-register";
 import ClientRegister from "./components/client-register/client-register";
@@ -33,6 +35,8 @@ function App() {
       />
       <Routes>
       <Route path="/" element={<Landing />}></Route>
+      <Route path={`/client/${loggedInClient?.id}`} element={<ClientProfile loggedInClient={loggedInClient}/>}></Route>
+      <Route path={`/helper/${loggedInHelper?.id}`} element={<HelperProfile loggedInHelper={loggedInHelper}/>}></Route>
       <Route path='/client' element={<CreateRequest currentRequest={currentRequest} setCurrentRequest={setCurrentRequest} loggedInClient={loggedInClient} />}></Route>
       </Routes>
       <div className="modal" id="my-modal-6">
