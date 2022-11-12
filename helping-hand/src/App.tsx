@@ -23,6 +23,10 @@ function App() {
         setClient={setLoggedInClient}
         currentHelper={loggedInHelper}
         setHelper={setloggedInHelper}
+        registeredClient={authUserClient}
+        registeredHelper={authUserHelper}
+        setRegClient={setAuthUserClient}
+        setRegHelper={setAuthUserHelper}
       />
       <Routes>
         <Route path="/" element={<Landing />}></Route>

@@ -55,6 +55,7 @@ function ClientRegister(props: IRegisterProps) {
       } else {
         const userObject = await res.json();
         settingUser(userObject);
+        console.log(userObject);
         console.log(userObject.id);
         document?.getElementById("close")?.click();
         return navigate(`/client/${userObject.id}`);
