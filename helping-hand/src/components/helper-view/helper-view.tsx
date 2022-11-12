@@ -29,7 +29,7 @@ export default function HelperView(props: IHelperView){
             let res = await fetch('http://localhost:8080/helper/requests', {
                 method: 'GET',
                 headers: {
-                    'Authorization': 'helperid'
+                    'Authorization': ``
                 }
             });
 
