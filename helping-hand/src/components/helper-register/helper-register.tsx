@@ -1,13 +1,10 @@
 import React, { SyntheticEvent, useState } from "react";
-import { Navigate } from "react-router-dom";
 import { Helper } from "../../models/helper";
-import HHAPI from "../../utils/utility";
-import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 interface IRegisterProps {
-  currentUser: Helper | undefined;
-  setCurrentUser: (nextUser: Helper) => void;
+  currentHelper: Helper | undefined;
+  setCurrentHelper: (nextUser: Helper) => void;
 }
 
 function HelperRegister(props: IRegisterProps) {
@@ -15,6 +12,12 @@ function HelperRegister(props: IRegisterProps) {
   const [last, setLast] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const setCurrentUser = props.setCurrentHelper;
+  const navigate = useNavigate();
+
+  const settingUser = (user: Helper) => {
+    setCurrentUser(user);
+  };
 
   const updateFirst = (e: SyntheticEvent) => {
     setFirst((e.target as HTMLInputElement).value);
@@ -30,7 +33,7 @@ function HelperRegister(props: IRegisterProps) {
   };
 
   async function registerForHelper(e: SyntheticEvent) {
-    // e.preventDefault();
+    e.preventDefault();
     try {
       let res = await fetch("http://localhost:8080/helper", {
         method: "POST",
@@ -44,39 +47,65 @@ function HelperRegister(props: IRegisterProps) {
           password,
         }),
       });
-      console.log(res);
 
       if (res.status !== 201) {
         console.log(res);
         console.log(res.status);
         console.log("could not connect");
       } else {
-        const result = await res.json();
-        return result;
+        const userObject = await res.json();
+        settingUser(userObject);
+        console.log(userObject.id);
+        document?.getElementById("close")?.click();
+        return navigate(`/helper/${userObject.id}`);
       }
     } catch (err) {
       console.log("There was an error communicating with the API.");
     }
   }
 
-  return props.currentUser ? (
-    <Navigate to="/dashboard" />
-  ) : (
+  return (
     <div>
       <p>Helper Sign up</p>
 
       <input
-      className="text-black"
+        className="text-black"
         placeholder="First Name"
         type="first name"
         onChange={updateFirst}
-        /><br/><br/>
-      <input className="text-black" placeholder="Last Name" type="last name" onChange={updateLast} /><br/><br/>
-      <input className="text-black" placeholder="Username" type="username" onChange={updateUName} /><br/><br/>
-      <input className="text-black" placeholder="Password" type="password" onChange={updatePass} /><br/><br/>
-      <a href="/" className="btn btn-secondary" onClick={registerForHelper}>Register</a>
-      <a href="#" className="btn">Close</a>
-
+      />
+      <br />
+      <br />
+      <input
+        className="text-black"
+        placeholder="Last Name"
+        type="last name"
+        onChange={updateLast}
+      />
+      <br />
+      <br />
+      <input
+        className="text-black"
+        placeholder="Username"
+        type="username"
+        onChange={updateUName}
+      />
+      <br />
+      <br />
+      <input
+        className="text-black"
+        placeholder="Password"
+        type="password"
+        onChange={updatePass}
+      />
+      <br />
+      <br />
+      <a href="#" className="btn btn-secondary" onClick={registerForHelper}>
+        Register
+      </a>
+      <a href="#" className="btn">
+        Close
+      </a>
     </div>
   );
 }

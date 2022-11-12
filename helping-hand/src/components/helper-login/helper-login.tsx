@@ -1,20 +1,20 @@
 import { SyntheticEvent, useState } from "react";
-import { Client } from "../../models/client";
+import { Helper } from "../../models/helper";
 import { useNavigate } from "react-router-dom";
 
 interface ILoginProps {
-  currentClient: Client | undefined;
-  setCurrentClient: (nextUser: Client) => void;
+  currentHelper: Helper | undefined;
+  setCurrentHelper: (nextUser: Helper) => void;
 }
 
-export default function ClientLogin(props: ILoginProps) {
+export default function HelperLogin(props: ILoginProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const setCurrentUser = props.setCurrentClient;
+  const setCurrentUser = props.setCurrentHelper;
   const navigate = useNavigate();
 
-  const settingUser = (user: Client) => {
+  const settingUser = (user: Helper) => {
     setCurrentUser(user);
   };
 
@@ -26,13 +26,13 @@ export default function ClientLogin(props: ILoginProps) {
     setPassword((e.target as HTMLInputElement).value);
   };
 
-  let clientLogin = async (e: SyntheticEvent) => {
+  let helperLogin = async (e: SyntheticEvent) => {
     e.preventDefault();
     if (!username || !password) {
       console.log("Please provide a username and a password");
     } else {
       try {
-        let response = await fetch("http://localhost:8080/client-auth", {
+        let response = await fetch("http://localhost:8080/helper-auth", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -48,15 +48,13 @@ export default function ClientLogin(props: ILoginProps) {
           const userObject = await response.json();
           settingUser(userObject);
           console.log(userObject);
-          console.log(userObject.id);
-          document?.getElementById('close')?.click();
-          return navigate(`/client/${userObject.id}`);
+          document?.getElementById("close")?.click();
+          return navigate(`/helper/${userObject.id}`);
         } else {
           setErrorMessage(
             `Could not validate credentials : ERROR CODE ${response.status}`
           );
         }
-        console.log(response);
       } catch (err) {
         console.log(err);
       }
@@ -65,7 +63,7 @@ export default function ClientLogin(props: ILoginProps) {
 
   return (
     <div>
-      <p>Client Login</p>
+      <p>Helper Login</p>
 
       <input
         className="text-black"
@@ -83,14 +81,12 @@ export default function ClientLogin(props: ILoginProps) {
       />
       <br />
       <br />
-      <a href="#" className="btn btn-secondary" onClick={clientLogin}>
+      <a href="#" className="btn btn-secondary" onClick={helperLogin}>
         Login
       </a>
-      <a href="#" id='close' className="btn">
+      <a href="#" className="btn">
         Close
       </a>
     </div>
   );
 }
-
-// export default ClientLogin;

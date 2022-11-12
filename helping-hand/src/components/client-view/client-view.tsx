@@ -2,19 +2,18 @@ import { SyntheticEvent, useEffect, useState } from 'react';
 import { Helper } from '../../models/helper';
 import { Navigate } from 'react-router-dom';
 
-interface IHelperView {
+interface IClientView {
     currentUser: Helper | undefined;
     setCurrentUser: (nextUser: Helper) => void;
 }
 
-
-export default function HelperView(props: IHelperView){
+export default function clientView(props: IClientView){
 
     const [reequests, setRequests] = useState<Request[]>([] as Request[]);
     const [message, setErrorMessage] = useState('');
 
     useEffect(() => {
-        HelperViewRequests();
+        clientViewRequests();
         return function(){
 
         };
@@ -24,12 +23,12 @@ export default function HelperView(props: IHelperView){
 
     // let HelperViewRequests = async (e: SyntheticEvent) => {
         // e.preventDefault();
-        async function HelperViewRequests(){
+        async function clientViewRequests(){
         try{
             let res = await fetch('http://localhost:8080/helper/requests', {
                 method: 'GET',
                 headers: {
-                    'Authorization': 'helperid'
+                    'Authorization': 'clientid' // placeholder, just need clientId for auth
                 }
             });
 
