@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Landing from "./components/landing/landing";
 import NavBar from "./components/navbar/navbar";
+import { Request } from './models/request';
+import CreateRequest from './components/create-request/create-request';
 import { Client } from "./models/client";
 import { Helper } from "./models/helper";
 import HelperLogin from "./components/helper-login/helper-login";
@@ -15,6 +17,7 @@ function App() {
   const [authUserHelper, setAuthUserHelper] = useState<Helper>();
   const [authUserClient, setAuthUserClient] = useState<Client>();
   const [loggedInClient, setLoggedInClient] = useState<Client>();
+  const [currentRequest, setCurrentRequest] = useState<Request>();
 
   return (
     <BrowserRouter>
@@ -29,7 +32,8 @@ function App() {
         setRegHelper={setAuthUserHelper}
       />
       <Routes>
-        <Route path="/" element={<Landing />}></Route>
+      <Route path="/" element={<Landing />}></Route>
+      <Route path='/client' element={<CreateRequest currentRequest={currentRequest} setCurrentRequest={setCurrentRequest} loggedInClient={loggedInClient} />}></Route>
       </Routes>
       <div className="modal" id="my-modal-6">
         <div className="modal-box max-w-[15%]">
