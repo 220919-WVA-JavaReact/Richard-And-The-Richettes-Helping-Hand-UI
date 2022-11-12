@@ -1,6 +1,6 @@
 import { PropaneSharp } from '@mui/icons-material';
 import React, { SyntheticEvent, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { Client } from '../../models/client';
 import { Request } from '../../models/request';
 
@@ -10,17 +10,14 @@ import { Request } from '../../models/request';
 interface ICreateReqProps {
     currentRequest: Request | undefined;
     setCurrentRequest: (nextRequest: Request) => void;
+    loggedInClient: Client | undefined;
 }
-
-// interface ICreateReqProps {
-//     current: Client | undefined;
-//     setCurrentClient: (nextClient: Client) => void;
-// }
 
 function CreateRequest(props: ICreateReqProps){
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [deadline, setDeadline] = useState("");
+    const navigate = useNavigate();
 
     const updateTitle = (e: SyntheticEvent) => {
         setTitle((e.target as HTMLInputElement).value);
@@ -52,7 +49,7 @@ function CreateRequest(props: ICreateReqProps){
                 console.log("could not connect")
             } else {
                 const result = await res.json();
-                return <Navigate to='/client/${id}/requests' />;
+                return navigate(`client/${result.clientId}`);
             }
         } catch (err) {
             console.log("Error talking to API");

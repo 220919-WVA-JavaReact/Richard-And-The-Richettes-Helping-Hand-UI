@@ -22,7 +22,7 @@ function App() {
       <NavBar />
       <Routes>
       <Route path="/" element={<Landing />}></Route>
-      <Route path='/client' element={<CreateRequest currentRequest={currentRequest} setCurrentRequest={setCurrentRequest} />}></Route>
+      <Route path='/client' element={<CreateRequest currentRequest={currentRequest} setCurrentRequest={setCurrentRequest} loggedInClient={loggedInClient} />}></Route>
       </Routes>
   </BrowserRouter>
   );
