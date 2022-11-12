@@ -1,5 +1,5 @@
 import React, { SyntheticEvent, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Bid } from "../../models/bid";
 import { Request } from "../../models/request";
 import { Helper } from "../../models/helper";
@@ -10,6 +10,10 @@ interface ICreateBidProps {
     currentRequest: Request | undefined;
     loggedInHelper: Helper | undefined;
 }
+
+const settingUser = (user: Helper) => {
+    loggedInHelper(user);
+  };
 
 function CreateBid(props: ICreateBidProps){
     const [amount, setAmount] = useState("");
@@ -23,7 +27,7 @@ function CreateBid(props: ICreateBidProps){
     async function helperCreateBid(e: SyntheticEvent){
         e.preventDefault();
         try {
-            let bid = await fetch("http://localhost:8080/bids",  {
+            let response = await fetch("http://localhost:8080/bids",  {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -34,16 +38,23 @@ function CreateBid(props: ICreateBidProps){
                     amount
                 }),
             });
-            console.log(bid);
-
-            if (bid.status !== 201) {
-                console.log(bid);
-                console.log(bid.status);
-                console.log("could not connect");
-            } else {
-                const result = await bid.json();
-                return <Navigate to="/helper/id" />;
-            }
+            if (response.status === 200) {
+                let token = response.headers.get("Authorization");
+                // console.log(response);
+                if (token) {
+                  sessionStorage.setItem("token", token);
+                }
+                const userObject = await response.json();
+                settingUser(userObject);
+                console.log(userObject);
+                console.log(userObject.id);
+                document?.getElementById('close')?.click();
+                return navigate(`/helper/${userObject.id}`);
+              } else {
+                setErrorMessage(
+                  `Could not validate credentials : ERROR CODE ${response.status}`
+                );
+              }
         } catch (err) {
             console.log("There was an error communicating with the API.");
         }
