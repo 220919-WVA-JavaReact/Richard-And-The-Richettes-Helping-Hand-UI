@@ -1,5 +1,5 @@
 import React, { SyntheticEvent, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Bid } from "../../models/bid";
 import { Request } from "../../models/request";
 import { Client } from "../../models/client";
@@ -15,6 +15,8 @@ function UpdateStatus(props: IUpdateStatusProps){
     const [status, setStatus] = useState("");
     const requestId = props.currentRequest?.requestId;
     const clientId = props.loggedInClient?.clientId;
+    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState("");
 
     
 
@@ -44,7 +46,7 @@ function UpdateStatus(props: IUpdateStatusProps){
                 console.log("could not connect");
             } else {
                 const result = await bid.json();
-                return <Navigate to="/client/id" />;
+                return navigate(`/client/${clientId}`);
             }
         } catch (err) {
             console.log("There was an error communicating with the API.");

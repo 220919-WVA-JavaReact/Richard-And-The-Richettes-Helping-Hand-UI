@@ -11,14 +11,13 @@ interface ICreateBidProps {
     loggedInHelper: Helper | undefined;
 }
 
-const settingUser = (user: Helper) => {
-    loggedInHelper(user);
-  };
 
 function CreateBid(props: ICreateBidProps){
     const [amount, setAmount] = useState("");
     const requestId = props.currentRequest?.requestId;
     const helperId = props.loggedInHelper?.helperId;
+    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState("");
 
     const updateAmount = (e: SyntheticEvent) => {
         setAmount((e.target as HTMLInputElement).value);
@@ -44,12 +43,9 @@ function CreateBid(props: ICreateBidProps){
                 if (token) {
                   sessionStorage.setItem("token", token);
                 }
-                const userObject = await response.json();
-                settingUser(userObject);
-                console.log(userObject);
-                console.log(userObject.id);
+                const bid = await response.json();
                 document?.getElementById('close')?.click();
-                return navigate(`/helper/${userObject.id}`);
+                return navigate(`/helper/${helperId}`);
               } else {
                 setErrorMessage(
                   `Could not validate credentials : ERROR CODE ${response.status}`

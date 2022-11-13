@@ -1,5 +1,5 @@
 import React, { SyntheticEvent, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Bid } from "../../models/bid";
 import { Request } from "../../models/request";
 import { Helper } from "../../models/helper";
@@ -15,6 +15,8 @@ function UpdateAmount(props: IUpdateAmountProps){
     const [amount, setAmount] = useState("");
     const requestId = props.currentRequest?.requestId;
     const helperId = props.currentRequest?.requestId;
+    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState("");
 
     const updateAmount = (e: SyntheticEvent) => {
         setAmount((e.target as HTMLInputElement).value);
@@ -42,7 +44,7 @@ function UpdateAmount(props: IUpdateAmountProps){
                 console.log("could not connect");
             } else {
                 const result = await bid.json();
-                return <Navigate to="/helper/id" />;
+                return navigate(`/helper/${helperId}`)
             }
         } catch (err) {
             console.log("There was an error communicating with the API");
