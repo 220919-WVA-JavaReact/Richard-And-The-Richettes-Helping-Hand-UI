@@ -1,3 +1,5 @@
+import { Status } from "./status";
+
 export class Request{
     requestId: string;
     title: string;

@@ -1,12 +1,12 @@
 export class Client{
-    clientId: string;
+    id: string;
     first: string;
     last: string;
     username: string;
     password: string;
 
     constructor(id: string, username: string, first: string, last: string, password: string){
-        this.clientId = id;
+        this.id = id;
         this.username = username;
         this.first = first;
         this.last = last;
