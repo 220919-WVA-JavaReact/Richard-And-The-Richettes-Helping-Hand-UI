@@ -1,48 +1,66 @@
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { Helper } from '../../models/helper';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Client } from '../../models/client';
+import { request } from 'http';
 
 interface IClientView {
-    currentUser: Helper | undefined;
-    setCurrentUser: (nextUser: Helper) => void;
+    loggedInClient: Client | undefined;
 }
 
-export default function clientView(props: IClientView){
+export default function ClientView(props: IClientView){
 
-    const [reequests, setRequests] = useState<Request[]>([] as Request[]);
+    const [requests, setRequests] = useState<Request[] | undefined>();
     const [message, setErrorMessage] = useState('');
+    const navigate = useNavigate();
+    const currentUser = props.loggedInClient;
 
     useEffect(() => {
-        clientViewRequests();
+        ClientViewRequests();
         return function(){
 
         };
     }, []);
 
-
-
-    // let HelperViewRequests = async (e: SyntheticEvent) => {
-        // e.preventDefault();
-        async function clientViewRequests(){
+    async function ClientViewRequests(){
         try{
-            let res = await fetch('http://localhost:8080/helper/requests', {
+            let res = await fetch(`http://localhost:8080/client/${currentUser?.id}/requests`, {
                 method: 'GET',
                 headers: {
-                    'Authorization': 'clientid' // placeholder, just need clientId for auth
+                    'Content-Type': 'application/json' 
                 }
             });
 
             if (res.status != 200) {
                 setErrorMessage('Could not find requests.');
             } else {
+                const requestArray = await res.json();
                 setRequests(await res.json());
-                return ;
+                return navigate(`client/${currentUser?.id}`);
             }
         } catch (err) {
             setErrorMessage('Could not connect to database');
         }
     }
-    // return (
+    return (
+        <>
+            {requests?.map(request => (
+            <div key={request.id}>
+                <div className="card w-96 bg-base-100 shadow-xl">
+                    <div className="card-body">
+                        <h2 className="card-title">{request.title}</h2>
+                        <p>{request.Description}</p>
+                        <div className="card-actions justify-end">
+                            <button className="btn btn-primary">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            )
+                )}
+        </>
         
-    // )
+
+        
+    )
 }

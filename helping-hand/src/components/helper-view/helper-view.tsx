@@ -1,17 +1,18 @@
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { Helper } from '../../models/helper';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface IHelperView {
-    currentUser: Helper | undefined;
-    setCurrentUser: (nextUser: Helper) => void;
-}
+    loggedInHelper: Helper | undefined;
+  }
 
 
 export default function HelperView(props: IHelperView){
 
-    const [reequests, setRequests] = useState<Request[]>([] as Request[]);
+    const [requests, setRequests] = useState<Request[]>([] as Request[]);
     const [message, setErrorMessage] = useState('');
+    const navigate = useNavigate();
+    const currentUser = props.loggedInHelper;
 
     useEffect(() => {
         HelperViewRequests();
@@ -20,11 +21,7 @@ export default function HelperView(props: IHelperView){
         };
     }, []);
 
-
-
-    // let HelperViewRequests = async (e: SyntheticEvent) => {
-        // e.preventDefault();
-        async function HelperViewRequests(){
+    async function HelperViewRequests(){
         try{
             let res = await fetch('http://localhost:8080/helper/requests', {
                 method: 'GET',
@@ -43,7 +40,23 @@ export default function HelperView(props: IHelperView){
             setErrorMessage('Could not connect to database');
         }
     }
-    // return (
+    return (
+      <>
+      {requests?.map(request => (
+      <div key={request.id}>
+          <div className="card w-96 bg-base-100 shadow-xl">
+              <div className="card-body">
+                  <h2 className="card-title">{request.title}</h2>
+                  <p>{request.Description}</p>
+                  <div className="card-actions justify-end">
+                      <button className="btn btn-primary">Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>  
+      )
+          )}
+  </>
         
-    // )
+    )
 }

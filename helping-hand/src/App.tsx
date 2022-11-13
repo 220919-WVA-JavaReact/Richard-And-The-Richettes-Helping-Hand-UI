@@ -17,6 +17,8 @@ import HelperLogin from "./components/helper-login/helper-login";
 import HelperRegister from "./components/helper-register/helper-register";
 import ClientRegister from "./components/client-register/client-register";
 import ClientLogin from "./components/client-login/client-login";
+import ClientView from './components/client-view/client-view';
+import HelperViewRequests from './components/helper-view/helper-view';
 
 function App() {
   const [loggedInHelper, setloggedInHelper] = useState<Helper>();
@@ -43,6 +45,8 @@ function App() {
       <Route path={`/client/${loggedInClient?.id}`} element={<ClientProfile loggedInClient={loggedInClient}/>}></Route>
       <Route path={`/helper/${loggedInHelper?.id}`} element={<HelperProfile loggedInHelper={loggedInHelper}/>}></Route>
       <Route path={`/client/${loggedInClient?.id}/create-request`} element={<CreateRequest  loggedInClient={loggedInClient} />}></Route>
+      <Route path={`/client/${loggedInClient?.id}/requests`} element={<ClientView loggedInClient={loggedInClient} />}></Route>
+      <Route path={`/helper/request`} element={<HelperViewRequests loggedInHelper={loggedInHelper} />}></Route>
       <Route path={`/helper/${loggedInHelper?.id}`} element={<CreateBid currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
       <Route path={`/helper/${loggedInHelper?.id}/bid/${currentBid.id}`} element={<UpdateAmount currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
       <Route path="/bids" element={<UpdateStatus currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInClient={loggedInClient} currentRequest={currentRequest}/>}></Route>
