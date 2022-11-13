@@ -48,8 +48,8 @@ function App() {
       <Route path={`/client/${loggedInClient?.id}/requests`} element={<ClientView loggedInClient={loggedInClient} />}></Route>
       <Route path={`/helper/request`} element={<HelperViewRequests loggedInHelper={loggedInHelper} />}></Route>
       <Route path={`/helper/${loggedInHelper?.id}`} element={<CreateBid currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
-      <Route path={`/helper/${loggedInHelper?.id}/bid/${currentBid.id}`} element={<UpdateAmount currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
-      <Route path="/bids" element={<UpdateStatus currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInClient={loggedInClient} currentRequest={currentRequest}/>}></Route>
+      <Route path={`/helper/${loggedInHelper?.id}/bid/${currentBid?.id}`} element={<UpdateAmount currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
+      {/* <Route path="/bids" element={<UpdateStatus currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInClient={loggedInClient} currentRequest={currentRequest}/>}></Route> */}
       </Routes>
       <div className="modal" id="my-modal-6">
         <div className="modal-box max-w-[15%]">

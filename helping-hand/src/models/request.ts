@@ -1,14 +1,14 @@
 import { Status } from "./status";
 
 export class Request{
-    requestId: string;
+    id: string;
     title: string;
     description: string;
     deadline: Date;
     clientId: string;
 
-    constructor(requestId: string, title: string, description: string, deadline: Date, clientId: string){
-        this.requestId = requestId;
+    constructor(id: string, title: string, description: string, deadline: Date, clientId: string){
+        this.id = id;
         this.title = title;
         this.description = description;
         this.deadline = deadline;

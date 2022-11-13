@@ -9,7 +9,6 @@ interface IClientView {
 }
 
 export default function ClientView(props: IClientView){
-
     const [requests, setRequests] = useState<Request[] | undefined>();
     const [message, setErrorMessage] = useState('');
     const navigate = useNavigate();
@@ -30,12 +29,11 @@ export default function ClientView(props: IClientView){
                     'Content-Type': 'application/json' 
                 }
             });
-
             if (res.status != 200) {
                 setErrorMessage('Could not find requests.');
             } else {
                 const requestArray = await res.json();
-                setRequests(await res.json());
+                setRequests(requestArray);
                 return navigate(`client/${currentUser?.id}`);
             }
         } catch (err) {
@@ -45,22 +43,18 @@ export default function ClientView(props: IClientView){
     return (
         <>
             {requests?.map(request => (
-            <div key={request.id}>
-                <div className="card w-96 bg-base-100 shadow-xl">
-                    <div className="card-body">
-                        <h2 className="card-title">{request.title}</h2>
-                        <p>{request.Description}</p>
-                        <div className="card-actions justify-end">
-                            <button className="btn btn-primary">Close</button>
+                <div key={request.id}>
+                    <div className="card w-96 bg-base-100 shadow-xl">
+                        <div className="card-body">
+                            <h2 className="card-title">{request.title}</h2>
+                            <p>{request.description}</p>
+                            <div className="card-actions justify-end">
+                                <button className="btn btn-primary">Close</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>  
-            )
-                )}
+                </div>  
+            ))}
         </>
-        
-
-        
     )
 }
