@@ -1,15 +1,8 @@
-import { PropaneSharp } from '@mui/icons-material';
 import React, { SyntheticEvent, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Client } from '../../models/client';
-import { Request } from '../../models/request';
-
-
-
 
 interface ICreateReqProps {
-    currentRequest: Request | undefined;
-    setCurrentRequest: (nextRequest: Request) => void;
     loggedInClient: Client | undefined;
 }
 

@@ -37,7 +37,7 @@ function App() {
       <Route path="/" element={<Landing />}></Route>
       <Route path={`/client/${loggedInClient?.id}`} element={<ClientProfile loggedInClient={loggedInClient}/>}></Route>
       <Route path={`/helper/${loggedInHelper?.id}`} element={<HelperProfile loggedInHelper={loggedInHelper}/>}></Route>
-      <Route path='/client' element={<CreateRequest currentRequest={currentRequest} setCurrentRequest={setCurrentRequest} loggedInClient={loggedInClient} />}></Route>
+      <Route path={`/client/${loggedInClient?.id}/create-request`} element={<CreateRequest  loggedInClient={loggedInClient} />}></Route>
       </Routes>
       <div className="modal" id="my-modal-6">
         <div className="modal-box max-w-[15%]">

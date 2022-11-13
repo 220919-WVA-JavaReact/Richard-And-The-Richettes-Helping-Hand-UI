@@ -105,11 +105,20 @@ function NavBar(props: INavbarProps) {
   </div>
 </>
 
+const routeToCreateRequest = () => {
+  return navigate(`client/${client?.id}/create-request`)
+}
+
 let condition;
 if(!client && !helper && !regClient && !regHelper){
 condition = theCondition;
 }else{
 condition = <button onClick={logout}>Log out</button>
+}
+
+let createRequestButton;
+if(client) {
+  createRequestButton = <button onClick={routeToCreateRequest}>Create Request</button>
 }
 
   return (
@@ -120,6 +129,7 @@ condition = <button onClick={logout}>Log out</button>
         </Link>
       </div>
       <>
+      {createRequestButton}
       {condition}
       </>
     </div>
