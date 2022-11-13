@@ -6,6 +6,10 @@ import NavBar from "./components/navbar/navbar";
 import { Request } from './models/request';
 import { Client } from "./models/client";
 import { Helper } from "./models/helper";
+import { Bid } from "./models/bid";
+import CreateBid from "./components/create-bid/create-bid";
+import UpdateAmount from "./components/update-amount/update-amount";
+import UpdateStatus from "./components/update-bid-status/update-bid-status";
 import ClientProfile from './components/client/clientProfile';
 import HelperProfile from './components/helper/helperProfile';
 import CreateRequest from './components/create-request/create-request';
@@ -20,6 +24,7 @@ function App() {
   const [authUserClient, setAuthUserClient] = useState<Client>();
   const [loggedInClient, setLoggedInClient] = useState<Client>();
   const [currentRequest, setCurrentRequest] = useState<Request>();
+  const [currentBid, setCurrentBid] = useState<Bid>();
 
   return (
     <BrowserRouter>
@@ -38,6 +43,9 @@ function App() {
       <Route path={`/client/${loggedInClient?.id}`} element={<ClientProfile loggedInClient={loggedInClient}/>}></Route>
       <Route path={`/helper/${loggedInHelper?.id}`} element={<HelperProfile loggedInHelper={loggedInHelper}/>}></Route>
       <Route path={`/client/${loggedInClient?.id}/create-request`} element={<CreateRequest  loggedInClient={loggedInClient} />}></Route>
+      <Route path={`/helper/${loggedInHelper?.id}`} element={<CreateBid currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
+      <Route path={`/helper/${loggedInHelper?.id}/bid/${currentBid.id}`} element={<UpdateAmount currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
+      <Route path="/bids" element={<UpdateStatus currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInClient={loggedInClient} currentRequest={currentRequest}/>}></Route>
       </Routes>
       <div className="modal" id="my-modal-6">
         <div className="modal-box max-w-[15%]">
