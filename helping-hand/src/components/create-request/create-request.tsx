@@ -1,5 +1,5 @@
 import React, { SyntheticEvent, useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Client } from '../../models/client';
 
 interface ICreateReqProps {
@@ -11,6 +11,8 @@ function CreateRequest(props: ICreateReqProps){
     const [description, setDescription] = useState("");
     const [deadline, setDeadline] = useState("");
     const navigate = useNavigate();
+    const client = props.loggedInClient;
+    const clientId = client?.id;
 
     const updateTitle = (e: SyntheticEvent) => {
         setTitle((e.target as HTMLInputElement).value);
@@ -22,27 +24,26 @@ function CreateRequest(props: ICreateReqProps){
         setDeadline((e.target as HTMLInputElement).value);
     };
 
-    let clientCreateRequest = async (e: SyntheticEvent) => {
+    async function clientCreateRequest(e: SyntheticEvent) {
         e.preventDefault();
         try{
-            let res = await fetch("http://localhost:8080/client/create-request", {
+            let res = await fetch("http://localhost:8080/request", {
                 method: "POST",
-                headers: {"Content-Type": "application/json",},
+                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
+                    clientId,
                     title,
                     description,
                     deadline
                 }),
             });
-            console.log(res);
-
             if (res.status !== 201){
                 console.log(res);
                 console.log(res.status);
                 console.log("could not connect")
             } else {
                 const result = await res.json();
-                return navigate(`client/${result.clientId}`);
+                return navigate(`/client/${client?.id}`);
             }
         } catch (err) {
             console.log("Error talking to API");
@@ -52,7 +53,6 @@ function CreateRequest(props: ICreateReqProps){
         return  (
             <div>
                 <p>Create a Request</p>
-
                 <input
                 className="text-black"
                     placeholder="Title"

@@ -13,8 +13,8 @@ interface IUpdateStatusProps {
 
 function UpdateStatus(props: IUpdateStatusProps){
     const [status, setStatus] = useState("");
-    const requestId = props.currentRequest?.requestId;
-    const clientId = props.loggedInClient?.clientId;
+    const requestId = props.currentRequest?.id;
+    const clientId = props.loggedInClient?.id;
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
 

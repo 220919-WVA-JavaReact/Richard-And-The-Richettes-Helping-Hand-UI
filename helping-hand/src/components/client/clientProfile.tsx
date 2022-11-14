@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { Client } from '../../models/client';
-import CreateRequest from '../create-request/create-request';
+import ClientView from '../client-view/client-view';
 
 interface ClientProfileProps {
     loggedInClient: Client | undefined;
@@ -12,7 +12,7 @@ function ClientProfile(props: ClientProfileProps) {
 
     return (
         <div className='clientProfileContainer'>
-            {/* <ClientRequests /> */}
+            <ClientView loggedInClient={loggedInClient}/>
         </div>
     )
 }
