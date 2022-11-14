@@ -12,6 +12,10 @@ function ClientRegister(props: IRegisterProps) {
   const [last, setLast] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessageFirst, setErrorMessageFirst] = useState("");
+  const [errorMessageLast, setErrorMessageLast] = useState("");
+  const [errorMessageUsername, setErrorMessageUsername] = useState("");
+  const [errorMessagePassword, setErrorMessagePassword] = useState("");
   const setCurrentUser = props.setCurrentClient;
   const navigate = useNavigate();
 
@@ -34,6 +38,19 @@ function ClientRegister(props: IRegisterProps) {
 
   async function registerForClient(e: SyntheticEvent) {
     e.preventDefault();
+    if(!first) {
+      setErrorMessageFirst("Must provide a First name!")
+    }
+    if(!last){
+      setErrorMessageLast("Must provide a Last name!")
+    }
+    if(!username){
+      setErrorMessageUsername("Must provide a Username!")
+    }
+    if(!password){
+      setErrorMessagePassword("Must provide a Password!")
+    }
+    if(first && last && username && password){
     try {
       let res = await fetch("http://localhost:8080/client", {
         method: "POST",
@@ -64,11 +81,12 @@ function ClientRegister(props: IRegisterProps) {
       console.log("There was an error communicating with the API.");
     }
   }
+  }
 
   return (
     <div>
-      <p>Client Sign up</p>
-
+      <p>Client Sign up</p><br/>
+      {!first ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessageFirst}</p> : ''}
       <input
         className="text-black"
         placeholder="First Name"
@@ -77,6 +95,7 @@ function ClientRegister(props: IRegisterProps) {
       />
       <br />
       <br />
+      {!last ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessageLast}</p> : ''}
       <input
         className="text-black"
         placeholder="Last Name"
@@ -85,6 +104,7 @@ function ClientRegister(props: IRegisterProps) {
       />
       <br />
       <br />
+      {!username ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessageUsername}</p> : ''}
       <input
         className="text-black"
         placeholder="Username"
@@ -93,6 +113,7 @@ function ClientRegister(props: IRegisterProps) {
       />
       <br />
       <br />
+      {!password ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessagePassword}</p> : ''}
       <input
         className="text-black"
         placeholder="Password"

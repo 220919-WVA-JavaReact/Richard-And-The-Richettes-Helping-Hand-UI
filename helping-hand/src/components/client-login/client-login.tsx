@@ -1,6 +1,7 @@
 import { SyntheticEvent, useState } from "react";
 import { Client } from "../../models/client";
 import { useNavigate } from "react-router-dom";
+import './client-login.css';
 
 interface ILoginProps {
   currentClient: Client | undefined;
@@ -10,7 +11,9 @@ interface ILoginProps {
 export default function ClientLogin(props: ILoginProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessageUsername, setErrorMessageUsername] = useState("");
+  const [errorMessagePassword, setErrorMessagePassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
   const setCurrentUser = props.setCurrentClient;
   const navigate = useNavigate();
 
@@ -28,9 +31,13 @@ export default function ClientLogin(props: ILoginProps) {
 
   let clientLogin = async (e: SyntheticEvent) => {
     e.preventDefault();
-    if (!username || !password) {
-      console.log("Please provide a username and a password");
-    } else {
+    if (!username) {
+      setErrorMessageUsername("Please provide a Username!");
+    }
+    if(!password){
+      setErrorMessagePassword("Please provide a Password!");
+    }
+    if(username && password){
       try {
         let response = await fetch("http://localhost:8080/client-auth", {
           method: "POST",
@@ -53,7 +60,7 @@ export default function ClientLogin(props: ILoginProps) {
           return navigate(`/client/${userObject.id}`);
         } else {
           setErrorMessage(
-            `Could not validate credentials : ERROR CODE ${response.status}`
+            'Invalid USERNAME or PASSWORD!'
           );
         }
         console.log(response);
@@ -64,17 +71,17 @@ export default function ClientLogin(props: ILoginProps) {
   };
 
   return (
-    <div>
-      <p>Client Login</p>
-
+    <div className='client-login-modal'>
+      <p className='text-center'>Client Login</p><br/>
+      {!username ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessageUsername}</p> : ''}
       <input
         className="text-black"
         placeholder="Username"
         type="username"
         onChange={updateUName}
       />
-      <br />
-      <br />
+       <br />
+       {!password ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessagePassword}</p> : ''}
       <input
         className="text-black"
         placeholder="Password"
@@ -82,11 +89,11 @@ export default function ClientLogin(props: ILoginProps) {
         onChange={updatePass}
       />
       <br />
-      <br />
-      <a href="#" className="btn btn-secondary" onClick={clientLogin}>
+      <a href="#" className="btn btn-secondary px-12" onClick={clientLogin}>
         Login
       </a>
-      <a href="#" id='close' className="btn">
+      <br/>
+      <a href="#" id='close' className="btn px-12">
         Close
       </a>
     </div>

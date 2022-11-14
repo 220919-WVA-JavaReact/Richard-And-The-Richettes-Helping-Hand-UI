@@ -10,6 +10,8 @@ interface ILoginProps {
 export default function HelperLogin(props: ILoginProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessageUsername, setErrorMessageUsername] = useState("");
+  const [errorMessagePassword, setErrorMessagePassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const setCurrentUser = props.setCurrentHelper;
   const navigate = useNavigate();
@@ -28,9 +30,13 @@ export default function HelperLogin(props: ILoginProps) {
 
   let helperLogin = async (e: SyntheticEvent) => {
     e.preventDefault();
-    if (!username || !password) {
-      console.log("Please provide a username and a password");
-    } else {
+    if (!username) {
+      setErrorMessageUsername("Please provide a Username!");
+    }
+    if(!password) {
+      setErrorMessagePassword("Please provide a Password!");
+    }
+    if(username && password){
       try {
         let response = await fetch("http://localhost:8080/helper-auth", {
           method: "POST",
@@ -52,7 +58,7 @@ export default function HelperLogin(props: ILoginProps) {
           return navigate(`/helper/${userObject.id}`);
         } else {
           setErrorMessage(
-            `Could not validate credentials : ERROR CODE ${response.status}`
+            'Invalid USERNAME or PASSWORD!'
           );
         }
       } catch (err) {
@@ -62,9 +68,9 @@ export default function HelperLogin(props: ILoginProps) {
   };
 
   return (
-    <div>
-      <p>Helper Login</p>
-
+    <div className='client-login-modal'>
+      <p className='text-center'>Helper Login</p><br/>
+      {!username ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessageUsername}</p> : ''}
       <input
         className="text-black"
         placeholder="Username"
@@ -72,7 +78,7 @@ export default function HelperLogin(props: ILoginProps) {
         onChange={updateUName}
       />
       <br />
-      <br />
+      {!password ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessagePassword}</p> : ''}
       <input
         className="text-black"
         placeholder="Password"
@@ -80,11 +86,11 @@ export default function HelperLogin(props: ILoginProps) {
         onChange={updatePass}
       />
       <br />
-      <br />
-      <a href="#" className="btn btn-secondary" onClick={helperLogin}>
+      <a href="#" className="btn btn-secondary px-12" onClick={helperLogin}>
         Login
       </a>
-      <a href="#" className="btn">
+      <br/>
+      <a href="#" className="btn px-12">
         Close
       </a>
     </div>
