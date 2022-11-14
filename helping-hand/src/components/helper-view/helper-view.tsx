@@ -1,6 +1,7 @@
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { Helper } from '../../models/helper';
 import { useNavigate } from 'react-router-dom';
+import { Request } from '../../models/request';
 
 interface IHelperView {
     loggedInHelper: Helper | undefined;
@@ -16,9 +17,6 @@ export default function HelperView(props: IHelperView){
 
     useEffect(() => {
         HelperViewRequests();
-        return function(){
-
-        };
     }, []);
 
     async function HelperViewRequests(){
@@ -47,7 +45,7 @@ export default function HelperView(props: IHelperView){
           <div className="card w-96 bg-base-100 shadow-xl">
               <div className="card-body">
                   <h2 className="card-title">{request.title}</h2>
-                  <p>{request.Description}</p>
+                  <p>{request.description}</p>
                   <div className="card-actions justify-end">
                       <button className="btn btn-primary">Close</button>
                   </div>

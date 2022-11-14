@@ -10,7 +10,7 @@ export default async function HHAPI(route: string, method: string) {
             method: method,
         });
 
-        if (res.status != 200) {
+        if (res.status !== 200) {
             console.log('could not connect');
         } else {
             const result = await res.json();

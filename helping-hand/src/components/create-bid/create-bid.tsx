@@ -14,8 +14,8 @@ interface ICreateBidProps {
 
 function CreateBid(props: ICreateBidProps){
     const [amount, setAmount] = useState("");
-    const requestId = props.currentRequest?.requestId;
-    const helperId = props.loggedInHelper?.helperId;
+    const requestId = props.currentRequest?.id;
+    const helperId = props.loggedInHelper?.id;
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
 

@@ -13,8 +13,8 @@ interface IUpdateAmountProps {
 
 function UpdateAmount(props: IUpdateAmountProps){
     const [amount, setAmount] = useState("");
-    const requestId = props.currentRequest?.requestId;
-    const helperId = props.currentRequest?.requestId;
+    const requestId = props.currentRequest?.id;
+    const helperId = props.currentRequest?.id;
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
 
