@@ -2,6 +2,7 @@ import { SyntheticEvent, useEffect, useState } from 'react';
 import { Helper } from '../../models/helper';
 import { useNavigate } from 'react-router-dom';
 import { Request } from '../../models/request';
+import HHAPI from '../../utils/utility';
 
 interface IHelperView {
     loggedInHelper: Helper | undefined;
@@ -20,23 +21,8 @@ export default function HelperView(props: IHelperView){
     }, []);
 
     async function HelperViewRequests(){
-        try{
-            let res = await fetch('http://localhost:8080/helper/requests', {
-                method: 'GET',
-                headers: {
-                    'Authorization': 'helperid'
-                }
-            });
-
-            if (res.status != 200) {
-                setErrorMessage('Could not find requests.');
-            } else {
-                setRequests(await res.json());
-                return ;
-            }
-        } catch (err) {
-            setErrorMessage('Could not connect to database');
-        }
+        let requests = await HHAPI('/helper/requests', 'GET')
+        setRequests(requests);
     }
     return (
       <>
@@ -47,7 +33,7 @@ export default function HelperView(props: IHelperView){
                   <h2 className="card-title">{request.title}</h2>
                   <p>{request.description}</p>
                   <div className="card-actions justify-end">
-                      <button className="btn btn-primary">Close</button>
+                      <button className="btn btn-primary">Bid on Request</button>
                   </div>
               </div>
           </div>
