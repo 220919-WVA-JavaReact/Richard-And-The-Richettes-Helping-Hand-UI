@@ -1,0 +1,14 @@
+.hh-image{
+    /* height: 80%; */
+    margin:0 auto 0;
+    width: 80%;
+
+}
+
+#landing-text{
+    background-color: rgba(67, 67, 67, 0.911);
+    border-radius: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 10px;
+}

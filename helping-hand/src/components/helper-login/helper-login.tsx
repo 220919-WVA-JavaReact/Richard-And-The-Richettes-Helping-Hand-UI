@@ -68,9 +68,10 @@ export default function HelperLogin(props: ILoginProps) {
   };
 
   return (
-    <div className='client-login-modal'>
+    <div className='login-modal text-white'>
       <p className='text-center'>Helper Login</p><br/>
-      {!username ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessageUsername}</p> : ''}
+      <p className='font-bold text-info'>{errorMessage}</p>
+      {!username ? <p className="error-message font-bold text-info" >{errorMessageUsername}</p> : ''}
       <input
         className="text-black"
         placeholder="Username"
@@ -78,7 +79,7 @@ export default function HelperLogin(props: ILoginProps) {
         onChange={updateUName}
       />
       <br />
-      {!password ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessagePassword}</p> : ''}
+      {!password ? <p className="error-message font-bold text-info" >{errorMessagePassword}</p> : ''}
       <input
         className="text-black"
         placeholder="Password"
@@ -86,7 +87,7 @@ export default function HelperLogin(props: ILoginProps) {
         onChange={updatePass}
       />
       <br />
-      <a href="#" className="btn btn-secondary px-12" onClick={helperLogin}>
+      <a href="#" className="btn btn-secondary text-white px-12" onClick={helperLogin}>
         Login
       </a>
       <br/>

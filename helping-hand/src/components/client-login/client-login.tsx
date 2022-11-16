@@ -31,6 +31,10 @@ export default function ClientLogin(props: ILoginProps) {
 
   let clientLogin = async (e: SyntheticEvent) => {
     e.preventDefault();
+    setUsername('');
+    setPassword('');
+    setErrorMessageUsername('');
+    setErrorMessagePassword('');
     if (!username) {
       setErrorMessageUsername("Please provide a Username!");
     }
@@ -71,9 +75,10 @@ export default function ClientLogin(props: ILoginProps) {
   };
 
   return (
-    <div className='client-login-modal'>
+    <div className='login-modal text-white'>
       <p className='text-center'>Client Login</p><br/>
-      {!username ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessageUsername}</p> : ''}
+      <p className='font-bold text-info'>{errorMessage}</p>
+      {!username ? <p className="error-message font-bold text-info" >{errorMessageUsername}</p> : ''}
       <input
         className="text-black"
         placeholder="Username"
@@ -81,7 +86,7 @@ export default function ClientLogin(props: ILoginProps) {
         onChange={updateUName}
       />
        <br />
-       {!password ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessagePassword}</p> : ''}
+       {!password ? <p className="error-message font-bold text-info" >{errorMessagePassword}</p> : ''}
       <input
         className="text-black"
         placeholder="Password"
@@ -89,11 +94,11 @@ export default function ClientLogin(props: ILoginProps) {
         onChange={updatePass}
       />
       <br />
-      <a href="#" className="btn btn-secondary px-12" onClick={clientLogin}>
+      <a href="#" className="btn btn-secondary text-white px-12" onClick={clientLogin}>
         Login
       </a>
       <br/>
-      <a href="#" id='close' className="btn px-12">
+      <a href="#" id='close' className="btn text-black px-12">
         Close
       </a>
     </div>

@@ -22,8 +22,6 @@ import HelperViewRequests from './components/helper-view/helper-view';
 
 function App() {
   const [loggedInHelper, setloggedInHelper] = useState<Helper>();
-  const [authUserHelper, setAuthUserHelper] = useState<Helper>();
-  const [authUserClient, setAuthUserClient] = useState<Client>();
   const [loggedInClient, setLoggedInClient] = useState<Client>();
   const [currentRequest, setCurrentRequest] = useState<Request>();
   const [currentBid, setCurrentBid] = useState<Bid>();
@@ -35,16 +33,12 @@ function App() {
         setClient={setLoggedInClient}
         currentHelper={loggedInHelper}
         setHelper={setloggedInHelper}
-        registeredClient={authUserClient}
-        registeredHelper={authUserHelper}
-        setRegClient={setAuthUserClient}
-        setRegHelper={setAuthUserHelper}
       />
       <Routes>
       <Route path="/" element={<Landing />}></Route>
       <Route path={`/client/${loggedInClient?.id}`} element={<ClientProfile loggedInClient={loggedInClient}/>}></Route>
       <Route path={`/helper/${loggedInHelper?.id}`} element={<HelperProfile loggedInHelper={loggedInHelper}/>}></Route>
-      <Route path={`/client/${loggedInClient?.id}/create-request`} element={<CreateRequest  loggedInClient={loggedInClient} />}></Route>
+      <Route path={`/client/${loggedInClient?.id}/create-request`} element={<CreateRequest loggedInClient={loggedInClient} />}></Route>
       <Route path={`/client/${loggedInClient?.id}/requests`} element={<ClientView loggedInClient={loggedInClient} />}></Route>
       <Route path={`/helper/request`} element={<HelperViewRequests loggedInHelper={loggedInHelper} />}></Route>
       <Route path={`/helper/${loggedInHelper?.id}`} element={<CreateBid currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
@@ -53,28 +47,24 @@ function App() {
       </Routes>
       <div className="modal" id="my-modal-6">
         <div className="modal-box max-w-[15%]">
-          <div className="modal-action">
             <HelperRegister
-              currentHelper={authUserHelper}
-              setCurrentHelper={setAuthUserHelper}
+              currentHelper={loggedInHelper}
+              setCurrentHelper={setloggedInHelper}
             />
-          </div>
         </div>
       </div>
 
       <div className="modal" id="my-modal-5">
-        <div className="modal-box max-w-[15%]">
-          <div className="modal-action">
+        <div className="modal-box max-w-[17%]">
             <ClientRegister
-              currentClient={authUserClient}
-              setCurrentClient={setAuthUserClient}
+              currentClient={loggedInClient}
+              setCurrentClient={setLoggedInClient}
             />
-          </div>
         </div>
       </div>
 
       <div className="modal" id="my-modal-7">
-        <div className="modal-box max-w-[15%]">
+        <div className="modal-box max-w-[19%]">
           <ClientLogin
             currentClient={loggedInClient}
             setCurrentClient={setLoggedInClient}
@@ -83,7 +73,7 @@ function App() {
       </div>
 
       <div className="modal" id="my-modal-8">
-        <div className="modal-box max-w-[15%]">
+        <div className="modal-box max-w-[19%]">
           <HelperLogin
             currentHelper={loggedInHelper}
             setCurrentHelper={setloggedInHelper}
