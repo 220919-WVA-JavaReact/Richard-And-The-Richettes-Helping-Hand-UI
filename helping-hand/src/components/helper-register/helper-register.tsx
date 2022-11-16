@@ -85,9 +85,9 @@ function HelperRegister(props: IRegisterProps) {
   }
 
   return (
-    <div>
-      <p>Helper Sign up</p><br/>
-      {!first ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessageFirst}</p> : ''}
+    <div className='register-modal'>
+      <p className="text-white">Helper Sign up</p><br/>
+      {!first ? <p className="error-message font-bold text-info">{errorMessageFirst}</p> : ''}
       <input
         className="text-black"
         placeholder="First Name"
@@ -95,8 +95,7 @@ function HelperRegister(props: IRegisterProps) {
         onChange={updateFirst}
       />
       <br />
-      <br />
-      {!last ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessageLast}</p> : ''}
+      {!last ? <p className="error-message font-bold text-info">{errorMessageLast}</p> : ''}
       <input
         className="text-black"
         placeholder="Last Name"
@@ -104,8 +103,7 @@ function HelperRegister(props: IRegisterProps) {
         onChange={updateLast}
       />
       <br />
-      <br />
-      {!username ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessageUsername}</p> : ''}
+      {!username ? <p className="error-message font-bold text-info">{errorMessageUsername}</p> : ''}
       <input
         className="text-black"
         placeholder="Username"
@@ -113,8 +111,7 @@ function HelperRegister(props: IRegisterProps) {
         onChange={updateUName}
       />
       <br />
-      <br />
-      {!password ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessagePassword}</p> : ''}
+      {!password ? <p className="error-message font-bold text-info">{errorMessagePassword}</p> : ''}
       <input
         className="text-black"
         placeholder="Password"
@@ -122,11 +119,10 @@ function HelperRegister(props: IRegisterProps) {
         onChange={updatePass}
       />
       <br />
-      <br />
-      <a href="#" className="btn btn-secondary" onClick={registerForHelper}>
+      <a href="#" className="btn btn-secondary text-white px-12" onClick={registerForHelper}>
         Register
-      </a>
-      <a href="#" className="btn">
+      </a><br/>
+      <a href="#" className="btn text-black px-14">
         Close
       </a>
     </div>

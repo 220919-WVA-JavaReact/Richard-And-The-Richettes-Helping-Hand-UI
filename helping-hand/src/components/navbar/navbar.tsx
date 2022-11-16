@@ -10,34 +10,23 @@ interface INavbarProps {
   setClient: (nextClient: Client | undefined) => void;
   currentHelper: Helper | undefined;
   setHelper: (nextHelper: Helper | undefined) => void;
-  registeredClient: Client | undefined;
-  setRegClient: (nextClient: Client | undefined) => void;
-  registeredHelper: Helper | undefined;
-  setRegHelper: (nextHelper: Helper | undefined) => void;
 }
 
 function NavBar(props: INavbarProps) {
   const client = props?.currentClient;
   const helper = props?.currentHelper;
-  const regClient = props?.registeredClient;
-  const regHelper = props?.registeredHelper;
   const setClient = props.setClient;
   const setHelper = props.setHelper;
-  const setRegClient = props.setRegClient;
-  const setRegHelper = props.setRegHelper;
   const navigate = useNavigate();
 
   function logout() {
     setClient(undefined);
 
-    setRegClient(undefined);
-
     setHelper(undefined);
-
-    setRegHelper(undefined);
 
     return navigate("/");
   }
+
 
   const theCondition =<>
   <div className="flex-none px-10">
@@ -105,19 +94,36 @@ function NavBar(props: INavbarProps) {
 </>
 
 const routeToCreateRequest = () => {
-  return navigate(`client/${client?.id}/create-request`)
+  if(client){
+    navigate(`client/${client?.id}/create-request`)
+  }
+}
+
+
+function profile(){
+  if(client){
+    navigate(`client/${client?.id}`);
+  }
+  if(helper){
+    navigate(`helper/${helper?.id}`);
+  }
+
 }
 
 let condition;
-if(!client && !helper && !regClient && !regHelper){
+if(!client && !helper){
 condition = theCondition;
 }else{
-condition = <button onClick={logout}>Log out</button>
+condition =
+  <div>
+    <button className="btn btn-accent text-xl text-white mx-8 px-12" onClick={profile}>Profile</button>
+    <button className="btn btn-primary text-xl text-white px-12" onClick={logout}>Log out</button>
+  </div>
 }
 
 let createRequestButton;
 if(client) {
-  createRequestButton = <button onClick={routeToCreateRequest}>Create Request</button>
+  createRequestButton = <button className="btn btn-secondary text-xl text-white" onClick={routeToCreateRequest}>Create Request</button>
 }
 
   return (

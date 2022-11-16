@@ -1,6 +1,7 @@
 import React, { SyntheticEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Client } from "../../models/client";
+import './client-register.css';
 
 interface IRegisterProps {
   currentClient: Client | undefined;
@@ -16,6 +17,7 @@ function ClientRegister(props: IRegisterProps) {
   const [errorMessageLast, setErrorMessageLast] = useState("");
   const [errorMessageUsername, setErrorMessageUsername] = useState("");
   const [errorMessagePassword, setErrorMessagePassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
   const setCurrentUser = props.setCurrentClient;
   const navigate = useNavigate();
 
@@ -38,6 +40,10 @@ function ClientRegister(props: IRegisterProps) {
 
   async function registerForClient(e: SyntheticEvent) {
     e.preventDefault();
+    setFirst('');
+    setLast('');
+    setUsername('');
+    setPassword('');
     if(!first) {
       setErrorMessageFirst("Must provide a First name!")
     }
@@ -68,7 +74,7 @@ function ClientRegister(props: IRegisterProps) {
       if (res.status !== 201) {
         console.log(res);
         console.log(res.status);
-        console.log("could not connect");
+        setErrorMessage('Username is already taken!')
       } else {
         const userObject = await res.json();
         settingUser(userObject);
@@ -78,15 +84,15 @@ function ClientRegister(props: IRegisterProps) {
         return navigate(`/client/${userObject.id}`);
       }
     } catch (err) {
-      console.log("There was an error communicating with the API.");
+      setErrorMessage('Username is already taken!')
     }
   }
   }
 
   return (
-    <div>
-      <p>Client Sign up</p><br/>
-      {!first ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessageFirst}</p> : ''}
+    <div className='register-modal'>
+      <p className="text-white">Client Sign up</p><br/>
+      {!first ? <p className="error-message font-bold text-info" >{errorMessageFirst}</p> : ''}
       <input
         className="text-black"
         placeholder="First Name"
@@ -94,8 +100,7 @@ function ClientRegister(props: IRegisterProps) {
         onChange={updateFirst}
       />
       <br />
-      <br />
-      {!last ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessageLast}</p> : ''}
+      {!last ? <p className="error-message font-bold text-info">{errorMessageLast}</p> : ''}
       <input
         className="text-black"
         placeholder="Last Name"
@@ -103,8 +108,8 @@ function ClientRegister(props: IRegisterProps) {
         onChange={updateLast}
       />
       <br />
-      <br />
-      {!username ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessageUsername}</p> : ''}
+      <p className='font-bold text-info'>{errorMessage}</p>
+      {!username ? <p className="error-message font-bold text-info" >{errorMessageUsername}</p> : ''}
       <input
         className="text-black"
         placeholder="Username"
@@ -112,8 +117,7 @@ function ClientRegister(props: IRegisterProps) {
         onChange={updateUName}
       />
       <br />
-      <br />
-      {!password ? <p className="error-message font-bold text-center" style={{color: 'red'}}>{errorMessagePassword}</p> : ''}
+      {!password ? <p className="error-message font-bold text-info" >{errorMessagePassword}</p> : ''}
       <input
         className="text-black"
         placeholder="Password"
@@ -121,11 +125,10 @@ function ClientRegister(props: IRegisterProps) {
         onChange={updatePass}
       />
       <br />
-      <br />
-      <a href="#" className="btn btn-secondary" onClick={registerForClient}>
+      <a href="#" className="btn btn-secondary text-white px-12" onClick={registerForClient}>
         Register
-      </a>
-      <a href="#" id="close" className="btn">
+      </a><br/>
+      <a href="#" id="close" className="btn text-black px-14">
         Close
       </a>
     </div>

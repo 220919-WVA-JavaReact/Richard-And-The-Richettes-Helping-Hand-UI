@@ -1,17 +1,24 @@
 import React, { SyntheticEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Client } from '../../models/client';
+import './create-request.css';
 
 interface ICreateReqProps {
     loggedInClient: Client | undefined;
+    // registeredClient: Client | undefined;
+    // setRegClient: (nextClient: Client | undefined) => void;
 }
 
 function CreateRequest(props: ICreateReqProps){
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [deadline, setDeadline] = useState("");
+    const [errorTitle, setErrorTitle] = useState(" ");
+    const [errorDescription, setErrorDescription] = useState(" ");
+    const [errorDeadline, setErrorDead] = useState(" ");
     const navigate = useNavigate();
     const client = props.loggedInClient;
+    // const regClient = props?.registeredClient;
     const clientId = client?.id;
 
     const updateTitle = (e: SyntheticEvent) => {
@@ -26,6 +33,18 @@ function CreateRequest(props: ICreateReqProps){
 
     async function clientCreateRequest(e: SyntheticEvent) {
         e.preventDefault();
+        if(!title){
+            setErrorTitle('Must have a Title!');
+        }
+        if(!description){
+            setErrorDescription('Must have a Description!');
+        }
+        if(!deadline){
+            setErrorDead('Must have a Deadline!');
+        }
+        if(title && description &&deadline){
+
+
         try{
             let res = await fetch("http://localhost:8080/request", {
                 method: "POST",
@@ -47,23 +66,27 @@ function CreateRequest(props: ICreateReqProps){
             }
         } catch (err) {
             console.log("Error talking to API");
-        } 
+        }
+        }
     }
 
         return  (
-            <div>
-                <p>Create a Request</p>
+            <div className='create-req-cont'>
+                <p className='text-white text-xl'>Create a Request</p><br/>
+                {!title ? <p className="error-message font-bold text-info" >{errorTitle}</p> : ''}
                 <input
                 className="text-black"
                     placeholder="Title"
                     type="title"
                     onChange={(updateTitle)}
-                    /><br></br>
-                <input className="text-black" placeholder="Description" type="description" onChange={(updateDescription)} />
-                <input className="text-black" placeholder="Deadline" type="deadline" onChange={(updateDeadline)} />
-                <a href="/" className="btn btn-secondary" onClick={clientCreateRequest}>Create</a> 
-                <a href="#" className="btn">Cancel</a>
-                
+                    /><br/>
+                {!description ? <p className="error-message font-bold text-info" >{errorDescription}</p> : ''}
+                <input className="text-black" placeholder="Description" type="description" onChange={(updateDescription)} /><br/>
+                {!deadline ? <p className="error-message font-bold text-info" >{errorDeadline}</p> : ''}
+                <input className="text-black" placeholder="YYYY-MM-DD" type="deadline" onChange={(updateDeadline)} /><br/>
+                <a href="/" className="btn btn-secondary px-16" onClick={clientCreateRequest}>Create</a><br/>
+                <label className="btn px-16" onClick={()=>navigate(`/client/${client?.id}`)}>Cancel</label>
+
             </div>
         )
 }
