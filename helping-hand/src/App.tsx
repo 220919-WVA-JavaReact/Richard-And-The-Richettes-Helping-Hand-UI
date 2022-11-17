@@ -19,6 +19,7 @@ import ClientRegister from "./components/client-register/client-register";
 import ClientLogin from "./components/client-login/client-login";
 import ClientView from './components/client-view/client-view';
 import HelperViewRequests from './components/helper-view/helper-view';
+import UpdateRequest from "./components/create-request/update-request";
 
 function App() {
   const [loggedInHelper, setloggedInHelper] = useState<Helper>();
@@ -42,6 +43,7 @@ function App() {
       <Route path={`/client/${loggedInClient?.id}/requests`} element={<ClientView loggedInClient={loggedInClient} />}></Route>
       <Route path={`/helper/${loggedInHelper?.id}`} element={<CreateBid currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
       <Route path={`/helper/${loggedInHelper?.id}/bid/${currentBid?.id}`} element={<UpdateAmount currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
+      <Route path={`/client/${loggedInClient?.id}/request/${currentRequest?.id}/update-request`} element={<UpdateRequest loggedInClient={loggedInClient} currentRequest={currentRequest} setCurrentRequest={setCurrentRequest} />}></Route>
       {/* <Route path="/bids" element={<UpdateStatus currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInClient={loggedInClient} currentRequest={currentRequest}/>}></Route> */}
       </Routes>
       <div className="modal" id="my-modal-6">
