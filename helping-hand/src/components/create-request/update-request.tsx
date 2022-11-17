@@ -21,14 +21,40 @@ function UpdateRequest(props: IUpdateRequest){
     const [availability, setAvailability] = useState('');
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
+    const [errorTitle, setErrorTitle] = useState(" ");
+    const [errorDescription, setErrorDescription] = useState(" ");
+    const [errorDeadline, setErrorDead] = useState(" ");
     const updateRequest = (e: SyntheticEvent) => {
         setTitle((e.target as HTMLInputElement).value);
         setDescription((e.target as HTMLInputElement).value);
         setDeadline((e.target as HTMLInputElement).value);
     };
 
+    const updateTitle = (e: SyntheticEvent) => {
+        setTitle((e.target as HTMLInputElement).value);
+    };
+    const updateDescription = (e: SyntheticEvent) => {
+        setDescription((e.target as HTMLInputElement).value);
+    };
+    const updateDeadline = (e: SyntheticEvent) => {
+        setDeadline((e.target as HTMLInputElement).value);
+    };
+
     async function clientUpdateRequest(e: SyntheticEvent){
         e.preventDefault();
+
+        if(!title){
+            setErrorTitle('Must have a Title!');
+        }
+        if(!description){
+            setErrorDescription('Must have a Description!');
+        }
+        if(!deadline){
+            setErrorDead('Must have a Deadline!');
+        }
+        if(title && description &&deadline) 
+
+
         try{
             let req = await fetch(`http://localhost:8080/${clientId}/update`, {
                 method: 'PUT',
@@ -60,20 +86,23 @@ function UpdateRequest(props: IUpdateRequest){
     }
 
     return (
-        <div>
-            <p>Updating Your Request</p>
+        <div className='create-req-cont'>
+                <p className='text-white text-xl'>Update Your Request</p><br/>
+                {!title ? <p className="error-message font-bold text-info" >{errorTitle}</p> : ''}
+                <input
+                className="text-black"
+                    placeholder="Title"
+                    type="title"
+                    onChange={(updateTitle)}
+                    /><br/>
+                {!description ? <p className="error-message font-bold text-info" >{errorDescription}</p> : ''}
+                <input className="text-black" placeholder="Description" type="description" onChange={(updateDescription)} /><br/>
+                {!deadline ? <p className="error-message font-bold text-info" >{errorDeadline}</p> : ''}
+                <input className="text-black" placeholder="YYYY-MM-DD" type="deadline" onChange={(updateDeadline)} /><br/>
+                <a href="/" className="btn btn-secondary px-16" onClick={clientUpdateRequest}>Update Request</a><br/>
+                <label className="btn px-16" onClick={()=>navigate(`/client/${clientId}`)}>Cancel</label>
 
-            <input className="text-black" placeholder="Title" type="amount" onChange={updateRequest} /><br/><br/>
-            <input className="text-black" placeholder="Description" type="amount" onChange={updateRequest} /><br/><br/>
-            <input className="text-black" placeholder="Deadline" type="amount" onChange={updateRequest} /><br/><br/>
-            <label className="btn btn-secondary" onClick={clientUpdateRequest}>Update Request</label><br/><br/>
-            {/* <label for="What is your choice?">
-                <select name="choice" id="selection">
-                    <option value ="available">OPEN</option>
-                    <option value="closed">CLOSED</option>
-                </select>
-            </label>  */}
-        </div>
+            </div>
     )
 }
 
