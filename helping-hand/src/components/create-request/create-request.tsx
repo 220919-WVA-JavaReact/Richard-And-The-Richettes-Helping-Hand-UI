@@ -5,8 +5,6 @@ import './create-request.css';
 
 interface ICreateReqProps {
     loggedInClient: Client | undefined;
-    // registeredClient: Client | undefined;
-    // setRegClient: (nextClient: Client | undefined) => void;
 }
 
 function CreateRequest(props: ICreateReqProps){
@@ -18,7 +16,6 @@ function CreateRequest(props: ICreateReqProps){
     const [errorDeadline, setErrorDead] = useState(" ");
     const navigate = useNavigate();
     const client = props.loggedInClient;
-    // const regClient = props?.registeredClient;
     const clientId = client?.id;
 
     const updateTitle = (e: SyntheticEvent) => {

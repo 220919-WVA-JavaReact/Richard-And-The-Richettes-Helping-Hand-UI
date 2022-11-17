@@ -13,12 +13,13 @@ interface IUpdateRequest {
 }
 
 function UpdateRequest(props: IUpdateRequest){
-    const requestId = props.currentRequest?.id;
+    const id = props.currentRequest?.id;
     const clientId = props.currentRequest?.clientId;
+    // const id = clientId;
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [deadline, setDeadline] = useState('');
-    const [availability, setAvailability] = useState('');
+    const availability = props.currentRequest?.availability;
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
     const [errorTitle, setErrorTitle] = useState(" ");
@@ -42,7 +43,6 @@ function UpdateRequest(props: IUpdateRequest){
 
     async function clientUpdateRequest(e: SyntheticEvent){
         e.preventDefault();
-
         if(!title){
             setErrorTitle('Must have a Title!');
         }
@@ -56,14 +56,14 @@ function UpdateRequest(props: IUpdateRequest){
 
 
         try{
-            let req = await fetch(`http://localhost:8080/${clientId}/update`, {
+            let req = await fetch(`http://localhost:8080/request/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     clientId,
-                    requestId,
+                    id,
                     title,
                     description,
                     deadline,
@@ -71,8 +71,9 @@ function UpdateRequest(props: IUpdateRequest){
                 }),
             });
             console.log(req);
+            console.log(availability);
 
-            if (req.status != 201) {
+            if (req.status !== 201) {
                 console.log(req);
                 console.log(req.status)
                 console.log('could not connect')
