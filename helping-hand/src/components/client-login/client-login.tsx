@@ -76,7 +76,7 @@ export default function ClientLogin(props: ILoginProps) {
 
   return (
     <div className="login-modal text-white">
-      <p className="text-center">Client Login</p>
+      <p className="text-center text-xl">Client Login</p>
       <br />
       <p className="font-bold text-info">{errorMessage}</p>
       {!username ? (
@@ -88,7 +88,7 @@ export default function ClientLogin(props: ILoginProps) {
       )}
       <input
         id="user-input"
-        className="text-black"
+        className="text-white input input-bordered input-info max-w-xs"
         placeholder="Username"
         type="username"
         onChange={updateUName}
@@ -103,7 +103,7 @@ export default function ClientLogin(props: ILoginProps) {
       )}
       <input
         id="pass-input"
-        className="text-black"
+        className="text-white input input-bordered input-info max-w-xs"
         placeholder="Password"
         type="password"
         onChange={updatePass}

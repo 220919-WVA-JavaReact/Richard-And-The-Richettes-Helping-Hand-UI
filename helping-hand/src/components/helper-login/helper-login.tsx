@@ -79,7 +79,7 @@ export default function HelperLogin(props: ILoginProps) {
       {!username ? <p className="error-message font-bold text-info" >{errorMessageUsername}</p> : ''}
       <input
         id='user-input'
-        className="text-black"
+        className="text-white input input-bordered input-info max-w-xs"
         placeholder="Username"
         type="username"
         onChange={updateUName}
@@ -88,7 +88,7 @@ export default function HelperLogin(props: ILoginProps) {
       {!password ? <p className="error-message font-bold text-info" >{errorMessagePassword}</p> : ''}
       <input
         id='pass-input'
-        className="text-black"
+        className="text-white input input-bordered input-info max-w-xs"
         placeholder="Password"
         type="password"
         onChange={updatePass}

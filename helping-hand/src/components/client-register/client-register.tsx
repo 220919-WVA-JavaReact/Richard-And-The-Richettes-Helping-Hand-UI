@@ -100,7 +100,7 @@ function ClientRegister(props: IRegisterProps) {
       {!first ? <p className="error-message font-bold text-info" >{errorMessageFirst}</p> : ''}
       <input
         id='first-input'
-        className="text-black"
+        className="text-white input input-bordered input-info max-w-xs"
         placeholder="First Name"
         type="first name"
         onChange={updateFirst}
@@ -109,7 +109,7 @@ function ClientRegister(props: IRegisterProps) {
       {!last ? <p className="error-message font-bold text-info">{errorMessageLast}</p> : ''}
       <input
         id='last-input'
-        className="text-black"
+        className="text-white input input-bordered input-info max-w-xs"
         placeholder="Last Name"
         type="last name"
         onChange={updateLast}
@@ -119,7 +119,7 @@ function ClientRegister(props: IRegisterProps) {
       {!username ? <p className="error-message font-bold text-info" >{errorMessageUsername}</p> : ''}
       <input
         id='user-input'
-        className="text-black"
+        className="text-white input input-bordered input-info max-w-xs"
         placeholder="Username"
         type="username"
         onChange={updateUName}
@@ -128,7 +128,7 @@ function ClientRegister(props: IRegisterProps) {
       {!password ? <p className="error-message font-bold text-info" >{errorMessagePassword}</p> : ''}
       <input
         id='pass-input'
-        className="text-black"
+        className="text-white input input-bordered input-info max-w-xs"
         placeholder="Password"
         type="password"
         onChange={updatePass}

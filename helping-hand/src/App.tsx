@@ -46,7 +46,7 @@ function App() {
       {/* <Route path="/bids" element={<UpdateStatus currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInClient={loggedInClient} currentRequest={currentRequest}/>}></Route> */}
       </Routes>
       <div className="modal" id="my-modal-6">
-        <div className="modal-box max-w-[15%]">
+        <div className="modal-box max-w-[18%]">
             <HelperRegister
               currentHelper={loggedInHelper}
               setCurrentHelper={setloggedInHelper}
@@ -55,7 +55,7 @@ function App() {
       </div>
 
       <div className="modal" id="my-modal-5">
-        <div className="modal-box max-w-[17%]">
+        <div className="modal-box max-w-[18%]">
             <ClientRegister
               currentClient={loggedInClient}
               setCurrentClient={setLoggedInClient}
