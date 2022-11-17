@@ -6,6 +6,7 @@ import HHAPI from '../../utils/utility';
 
 interface IClientView {
     loggedInClient: Client | undefined;
+    setCurrentRequest: (nextRequest: Request) => void;
 }
 
 export default function ClientView(props: IClientView){
@@ -21,6 +22,12 @@ export default function ClientView(props: IClientView){
         let requests = await HHAPI(`/client/${currentUser?.id}/requests`, 'GET')
         setRequests(requests);
     }
+
+    const updateRequest = (e: SyntheticEvent, request: Request) => {
+        e.preventDefault();
+        props.setCurrentRequest(request)
+        navigate(`/client/${currentUser?.id}/request/${request.id}/update-request`)
+    }
     
     return (
         <>
@@ -32,7 +39,7 @@ export default function ClientView(props: IClientView){
                             <h2 className="card-title">{request.title}</h2>
                             <p>{request.description}</p>
                             <div className="card-actions justify-end">
-                                <button className="btn btn-primary">Close</button>
+                                <button className="btn btn-primary" onClick={(e) => updateRequest(e, request)}>Update Request</button>
                             </div>
                         </div>
                     </div>

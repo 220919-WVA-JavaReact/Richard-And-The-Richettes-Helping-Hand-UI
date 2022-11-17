@@ -37,10 +37,9 @@ function App() {
       />
       <Routes>
       <Route path="/" element={<Landing />}></Route>
-      <Route path={`/client/${loggedInClient?.id}`} element={<ClientProfile loggedInClient={loggedInClient}/>}></Route>
+      <Route path={`/client/${loggedInClient?.id}`} element={<ClientProfile loggedInClient={loggedInClient} setCurrentRequest={setCurrentRequest}/>}></Route>
       <Route path={`/helper/${loggedInHelper?.id}`} element={<HelperProfile loggedInHelper={loggedInHelper} setCurrentRequest={setCurrentRequest}/>}></Route>
       <Route path={`/client/${loggedInClient?.id}/create-request`} element={<CreateRequest loggedInClient={loggedInClient} />}></Route>
-      <Route path={`/client/${loggedInClient?.id}/requests`} element={<ClientView loggedInClient={loggedInClient} />}></Route>
       <Route path={`/request/${currentRequest?.id}/new-bid`} element={<CreateBid currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
       <Route path={`/helper/${loggedInHelper?.id}/bid/${currentBid?.id}`} element={<UpdateAmount currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
       <Route path={`/client/${loggedInClient?.id}/request/${currentRequest?.id}/update-request`} element={<UpdateRequest loggedInClient={loggedInClient} currentRequest={currentRequest} setCurrentRequest={setCurrentRequest} />}></Route>
