@@ -6,7 +6,7 @@ phases:
       nodejs: latest
   pre_build:
     commands:
-      - npm install
+      - npm install --force
       - aws s3 cp s3://helping-hand-resources/.env .
 
   build:
