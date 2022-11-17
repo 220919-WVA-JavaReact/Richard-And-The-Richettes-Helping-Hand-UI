@@ -56,7 +56,7 @@ function UpdateRequest(props: IUpdateRequest){
 
 
         try{
-            let req = await fetch(`http://localhost:8080/${clientId}/update`, {
+            let req = await fetch(`http://localhost:8080/request/${clientId}/update`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ function UpdateRequest(props: IUpdateRequest){
     }
 
     return (
-        <div className='create-req-cont'>
+        <div className='update-req-cont'>
                 <p className='text-white text-xl'>Update Your Request</p><br/>
                 {!title ? <p className="error-message font-bold text-info" >{errorTitle}</p> : ''}
                 <input
