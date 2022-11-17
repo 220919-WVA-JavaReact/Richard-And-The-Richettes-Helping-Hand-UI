@@ -43,7 +43,7 @@ function CreateRequest(props: ICreateReqProps){
 
 
         try{
-            let res = await fetch("http://localhost:8080/request", {
+            let res = await fetch(`${process.env.REACT_APP_API_URL}/request`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({

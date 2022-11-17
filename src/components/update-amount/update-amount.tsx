@@ -25,7 +25,7 @@ function UpdateAmount(props: IUpdateAmountProps){
     async function helperUpdateBid(e: SyntheticEvent){
         e.preventDefault();
         try{
-            let bid = await fetch("http://localhost:8080/bids", {
+            let bid = await fetch(`${process.env.REACT_APP_API_URL}/bids`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

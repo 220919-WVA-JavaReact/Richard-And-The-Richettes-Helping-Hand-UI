@@ -6,7 +6,7 @@
 
 export default async function HHAPI(route: string, method: string) {
     try {
-        const res = await fetch(`http://localhost:8080${route}`, {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}${route}`, {
             method: method,
         });
 

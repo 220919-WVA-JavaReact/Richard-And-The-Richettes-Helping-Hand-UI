@@ -56,7 +56,7 @@ function UpdateRequest(props: IUpdateRequest){
 
 
         try{
-            let req = await fetch(`http://localhost:8080/request/${id}`, {
+            let req = await fetch(`${process.env.REACT_APP_API_URL}/request/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

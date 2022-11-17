@@ -63,7 +63,7 @@ function HelperRegister(props: IRegisterProps) {
 
 
     try {
-      let res = await fetch("http://localhost:8080/helper", {
+      let res = await fetch(`${process.env.REACT_APP_API_URL}/helper`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

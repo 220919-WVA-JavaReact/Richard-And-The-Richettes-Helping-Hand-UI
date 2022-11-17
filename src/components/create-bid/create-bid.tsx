@@ -27,7 +27,7 @@ function CreateBid(props: ICreateBidProps){
         e.preventDefault();
     
         try {
-            let response = await fetch("http://localhost:8080/bids",  {
+            let response = await fetch(`${process.env.REACT_APP_API_URL}/bids`,  {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

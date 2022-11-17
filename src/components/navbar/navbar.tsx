@@ -95,17 +95,17 @@ function NavBar(props: INavbarProps) {
 
 const routeToCreateRequest = () => {
   if(client){
-    navigate(`client/${client?.id}/create-request`)
+    navigate(`/client/${client?.id}/create-request`)
   }
 }
 
 
 function profile(){
   if(client){
-    navigate(`client/${client?.id}`);
+    navigate(`/client/${client?.id}`);
   }
   if(helper){
-    navigate(`helper/${helper?.id}`);
+    navigate(`/helper/${helper?.id}`);
   }
 
 }

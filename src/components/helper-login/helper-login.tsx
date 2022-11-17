@@ -43,7 +43,7 @@ export default function HelperLogin(props: ILoginProps) {
     }
     if(username && password){
       try {
-        let response = await fetch("http://localhost:8080/helper-auth", {
+        let response = await fetch(`${process.env.REACT_APP_API_URL}/helper-auth`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
