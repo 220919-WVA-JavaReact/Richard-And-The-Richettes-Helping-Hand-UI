@@ -36,8 +36,17 @@ function HelperRegister(props: IRegisterProps) {
     setPassword((e.target as HTMLInputElement).value);
   };
 
+
   async function registerForHelper(e: SyntheticEvent) {
     e.preventDefault();
+    setFirst('');
+    setLast('');
+    setUsername('');
+    setPassword('');
+    setErrorMessageFirst('');
+    setErrorMessageLast('');
+    setErrorMessageUsername('');
+    setErrorMessagePassword('');
     if(!first) {
       setErrorMessageFirst("Must provide a First name!")
     }
@@ -89,6 +98,7 @@ function HelperRegister(props: IRegisterProps) {
       <p className="text-white">Helper Sign up</p><br/>
       {!first ? <p className="error-message font-bold text-info">{errorMessageFirst}</p> : ''}
       <input
+        id='first-input'
         className="text-black"
         placeholder="First Name"
         type="first name"
@@ -97,6 +107,7 @@ function HelperRegister(props: IRegisterProps) {
       <br />
       {!last ? <p className="error-message font-bold text-info">{errorMessageLast}</p> : ''}
       <input
+        id='last-input'
         className="text-black"
         placeholder="Last Name"
         type="last name"
@@ -105,6 +116,7 @@ function HelperRegister(props: IRegisterProps) {
       <br />
       {!username ? <p className="error-message font-bold text-info">{errorMessageUsername}</p> : ''}
       <input
+        id='user-input'
         className="text-black"
         placeholder="Username"
         type="username"
@@ -113,6 +125,7 @@ function HelperRegister(props: IRegisterProps) {
       <br />
       {!password ? <p className="error-message font-bold text-info">{errorMessagePassword}</p> : ''}
       <input
+        id='pass-input'
         className="text-black"
         placeholder="Password"
         type="password"

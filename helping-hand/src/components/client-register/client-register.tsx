@@ -38,12 +38,17 @@ function ClientRegister(props: IRegisterProps) {
     setPassword((e.target as HTMLInputElement).value);
   };
 
+
   async function registerForClient(e: SyntheticEvent) {
     e.preventDefault();
     setFirst('');
     setLast('');
     setUsername('');
     setPassword('');
+    setErrorMessageFirst('');
+    setErrorMessageLast('');
+    setErrorMessageUsername('');
+    setErrorMessagePassword('');
     if(!first) {
       setErrorMessageFirst("Must provide a First name!")
     }
@@ -94,6 +99,7 @@ function ClientRegister(props: IRegisterProps) {
       <p className="text-white">Client Sign up</p><br/>
       {!first ? <p className="error-message font-bold text-info" >{errorMessageFirst}</p> : ''}
       <input
+        id='first-input'
         className="text-black"
         placeholder="First Name"
         type="first name"
@@ -102,6 +108,7 @@ function ClientRegister(props: IRegisterProps) {
       <br />
       {!last ? <p className="error-message font-bold text-info">{errorMessageLast}</p> : ''}
       <input
+        id='last-input'
         className="text-black"
         placeholder="Last Name"
         type="last name"
@@ -111,6 +118,7 @@ function ClientRegister(props: IRegisterProps) {
       <p className='font-bold text-info'>{errorMessage}</p>
       {!username ? <p className="error-message font-bold text-info" >{errorMessageUsername}</p> : ''}
       <input
+        id='user-input'
         className="text-black"
         placeholder="Username"
         type="username"
@@ -119,6 +127,7 @@ function ClientRegister(props: IRegisterProps) {
       <br />
       {!password ? <p className="error-message font-bold text-info" >{errorMessagePassword}</p> : ''}
       <input
+        id='pass-input'
         className="text-black"
         placeholder="Password"
         type="password"

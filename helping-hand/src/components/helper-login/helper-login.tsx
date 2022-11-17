@@ -28,8 +28,13 @@ export default function HelperLogin(props: ILoginProps) {
     setPassword((e.target as HTMLInputElement).value);
   };
 
+
   let helperLogin = async (e: SyntheticEvent) => {
     e.preventDefault();
+    setUsername('');
+    setPassword('');
+    setErrorMessageUsername('');
+    setErrorMessagePassword('');
     if (!username) {
       setErrorMessageUsername("Please provide a Username!");
     }
@@ -73,6 +78,7 @@ export default function HelperLogin(props: ILoginProps) {
       <p className='font-bold text-info'>{errorMessage}</p>
       {!username ? <p className="error-message font-bold text-info" >{errorMessageUsername}</p> : ''}
       <input
+        id='user-input'
         className="text-black"
         placeholder="Username"
         type="username"
@@ -81,6 +87,7 @@ export default function HelperLogin(props: ILoginProps) {
       <br />
       {!password ? <p className="error-message font-bold text-info" >{errorMessagePassword}</p> : ''}
       <input
+        id='pass-input'
         className="text-black"
         placeholder="Password"
         type="password"

@@ -1,7 +1,7 @@
 import { SyntheticEvent, useState } from "react";
 import { Client } from "../../models/client";
 import { useNavigate } from "react-router-dom";
-import './client-login.css';
+import "./client-login.css";
 
 interface ILoginProps {
   currentClient: Client | undefined;
@@ -13,7 +13,7 @@ export default function ClientLogin(props: ILoginProps) {
   const [password, setPassword] = useState("");
   const [errorMessageUsername, setErrorMessageUsername] = useState("");
   const [errorMessagePassword, setErrorMessagePassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const setCurrentUser = props.setCurrentClient;
   const navigate = useNavigate();
 
@@ -29,19 +29,21 @@ export default function ClientLogin(props: ILoginProps) {
     setPassword((e.target as HTMLInputElement).value);
   };
 
+
+
   let clientLogin = async (e: SyntheticEvent) => {
     e.preventDefault();
     setUsername('');
     setPassword('');
-    setErrorMessageUsername('');
-    setErrorMessagePassword('');
+    setErrorMessageUsername("");
+    setErrorMessagePassword("");
     if (!username) {
       setErrorMessageUsername("Please provide a Username!");
     }
-    if(!password){
+    if (!password) {
       setErrorMessagePassword("Please provide a Password!");
     }
-    if(username && password){
+    if (username && password) {
       try {
         let response = await fetch("http://localhost:8080/client-auth", {
           method: "POST",
@@ -60,12 +62,10 @@ export default function ClientLogin(props: ILoginProps) {
           settingUser(userObject);
           console.log(userObject);
           console.log(userObject.id);
-          document?.getElementById('close')?.click();
+          document?.getElementById("close")?.click();
           return navigate(`/client/${userObject.id}`);
         } else {
-          setErrorMessage(
-            'Invalid USERNAME or PASSWORD!'
-          );
+          setErrorMessage("Invalid USERNAME or PASSWORD!");
         }
         console.log(response);
       } catch (err) {
@@ -75,30 +75,49 @@ export default function ClientLogin(props: ILoginProps) {
   };
 
   return (
-    <div className='login-modal text-white'>
-      <p className='text-center'>Client Login</p><br/>
-      <p className='font-bold text-info'>{errorMessage}</p>
-      {!username ? <p className="error-message font-bold text-info" >{errorMessageUsername}</p> : ''}
+    <div className="login-modal text-white">
+      <p className="text-center">Client Login</p>
+      <br />
+      <p className="font-bold text-info">{errorMessage}</p>
+      {!username ? (
+        <p className="error-message font-bold text-info">
+          {errorMessageUsername}
+        </p>
+      ) : (
+        ""
+      )}
       <input
+        id="user-input"
         className="text-black"
         placeholder="Username"
         type="username"
         onChange={updateUName}
       />
-       <br />
-       {!password ? <p className="error-message font-bold text-info" >{errorMessagePassword}</p> : ''}
+      <br />
+      {!password ? (
+        <p className="error-message font-bold text-info">
+          {errorMessagePassword}
+        </p>
+      ) : (
+        ""
+      )}
       <input
+        id="pass-input"
         className="text-black"
         placeholder="Password"
         type="password"
         onChange={updatePass}
       />
       <br />
-      <a href="#" className="btn btn-secondary text-white px-12" onClick={clientLogin}>
+      <a
+        href="#"
+        className="btn btn-secondary text-white px-12"
+        onClick={clientLogin}
+      >
         Login
       </a>
-      <br/>
-      <a href="#" id='close' className="btn text-black px-12">
+      <br />
+      <a href="#" id="close" className="btn text-black px-12">
         Close
       </a>
     </div>
