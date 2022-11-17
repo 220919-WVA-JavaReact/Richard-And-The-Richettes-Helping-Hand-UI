@@ -13,7 +13,7 @@ interface IUpdateStatusProps {
 
 function UpdateStatus(props: IUpdateStatusProps){
     const [status, setStatus] = useState("");
-    const requestId = props.currentRequest?.id;
+    const id = props.currentRequest?.id;
     const clientId = props.loggedInClient?.id;
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
@@ -33,7 +33,7 @@ function UpdateStatus(props: IUpdateStatusProps){
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    requestId,
+                    id,
                     clientId,
                     status
                 }),

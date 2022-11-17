@@ -13,8 +13,8 @@ interface IUpdateAmountProps {
 
 function UpdateAmount(props: IUpdateAmountProps){
     const [amount, setAmount] = useState("");
-    const requestId = props.currentRequest?.id;
-    const helperId = props.currentRequest?.id;
+    const id = props.currentRequest?.id;
+    const helperId = props.loggedInHelper?.id;
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -31,7 +31,7 @@ function UpdateAmount(props: IUpdateAmountProps){
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    requestId,
+                    id,
                     helperId,
                     amount
                 }),

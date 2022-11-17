@@ -14,17 +14,18 @@ interface ICreateBidProps {
 
 function CreateBid(props: ICreateBidProps){
     const [amount, setAmount] = useState("");
-    const requestId = props.currentRequest?.id;
+    const request = props.currentRequest;
     const helperId = props.loggedInHelper?.id;
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
-
+    console.log(request, "in create bid");
     const updateAmount = (e: SyntheticEvent) => {
         setAmount((e.target as HTMLInputElement).value);
     };
 
     async function helperCreateBid(e: SyntheticEvent){
         e.preventDefault();
+    
         try {
             let response = await fetch("http://localhost:8080/bids",  {
                 method: "POST",
@@ -32,24 +33,27 @@ function CreateBid(props: ICreateBidProps){
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    requestId,
+                    request,
                     helperId,
                     amount
                 }),
             });
-            if (response.status === 200) {
+            if (response.status === 201) {
                 let token = response.headers.get("Authorization");
                 // console.log(response);
                 if (token) {
                   sessionStorage.setItem("token", token);
                 }
                 const bid = await response.json();
-                document?.getElementById('close')?.click();
-                return navigate(`/helper/${helperId}`);
+                console.log(bid, 'bid response')
+                navigate(`/helper/${helperId}`);
+                return ;
+
               } else {
                 setErrorMessage(
                   `Could not validate credentials : ERROR CODE ${response.status}`
                 );
+                console.log("error")
               }
         } catch (err) {
             console.log("There was an error communicating with the API.");
@@ -58,8 +62,8 @@ function CreateBid(props: ICreateBidProps){
 
     return (
         <div>
-            <p>Bid Creation</p>
 
+            <p>Bid Creation</p>
             <input className="text-black" placeholder="Amount" type="amount" onChange={updateAmount} /><br/><br/>
             <label className="btn btn-secondary" onClick={helperCreateBid}>Create Bid</label>
         </div>
