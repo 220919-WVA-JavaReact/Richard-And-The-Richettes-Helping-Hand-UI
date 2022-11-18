@@ -33,22 +33,26 @@ export default function ClientViewBids(props: IClientViewBids){
     }
     
     return (
-        <>
-            {bids?.map(bid => (
-                <div key={bid.id}>
-                    <br />
-                    <div className="card w-96 bg-primary shadow-xl">
-                        <div className="card-body">
-                            <h2 className="card-title">{props.currentRequest?.title}</h2>
-                            <p>{props.currentRequest?.description}</p>
-                            <p>{bid.amount}</p>
-                            <div className="card-actions justify-end">
-                                <button className="btn btn-primary" onClick={(e) => updateBid(e, bid)}>Update Bid</button>
+        <div className='clientProfileContainer'>
+            <div className="flex flex-col w-full lg:flex-row">
+                <div className="grid flex-grow h-32 card place-items-center">
+                    {bids?.map(bid => (
+                        <div key={bid.id}>
+                            <br />
+                            <div className="card w-96 bg-primary shadow-xl">
+                                <div className="card-body">
+                                    <h2 className="card-title">{props.currentRequest?.title}</h2>
+                                    <p>{props.currentRequest?.description}</p>
+                                    <p>{bid.amount}</p>
+                                    <div className="card-actions justify-end">
+                                        <button className="btn btn-primary" onClick={(e) => updateBid(e, bid)}>Update Bid</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>  
-            ))}
-        </>
+                        </div>  
+                    ))}
+                </div>
+            </div>
+        </div>
     )
 }

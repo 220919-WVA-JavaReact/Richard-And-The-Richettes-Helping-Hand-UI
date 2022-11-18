@@ -58,10 +58,8 @@ function UpdateAmount(props: IUpdateAmountProps){
     return (
         <div className='create-req-cont'>
             <p className='text-white text-xl'>Updating Bid</p>
-
             <input className="text-black" placeholder="Amount" type="amount" onChange={updateAmount} /><br/><br/>
             <label className="btn btn-secondary px-16" onClick={helperUpdateBid}>Update Amount</label><br/><br/>
-            
         </div>
     )
 }

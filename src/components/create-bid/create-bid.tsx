@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Bid } from "../../models/bid";
 import { Request } from "../../models/request";
 import { Helper } from "../../models/helper";
+import '../create-request/create-request.css';
 
 interface ICreateBidProps {
     currentBid: Bid | undefined;
@@ -61,8 +62,7 @@ function CreateBid(props: ICreateBidProps){
     }
 
     return (
-        <div>
-
+        <div className='create-req-cont'>
             <p>Bid Creation</p>
             <input className="text-black" placeholder="Amount" type="amount" onChange={updateAmount} /><br/><br/>
             <label className="btn btn-secondary" onClick={helperCreateBid}>Create Bid</label>
