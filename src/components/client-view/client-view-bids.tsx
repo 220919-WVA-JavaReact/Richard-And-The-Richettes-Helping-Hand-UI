@@ -42,8 +42,9 @@ export default function ClientViewBids(props: IClientViewBids){
                             <div className="card w-96 bg-primary shadow-xl">
                                 <div className="card-body">
                                     <h2 className="card-title">{props.currentRequest?.title}</h2>
-                                    <p>{props.currentRequest?.description}</p>
-                                    <p>{bid.amount}</p>
+                                    <p>Request Description: {props.currentRequest?.description}</p>
+                                    <p>Bid Amount: {bid.amount}</p>
+                                    <p>Bid Status: {bid.status}</p>
                                     <div className="card-actions justify-end">
                                         <button className="btn btn-primary" onClick={(e) => updateBid(e, bid)}>Update Bid</button>
                                     </div>

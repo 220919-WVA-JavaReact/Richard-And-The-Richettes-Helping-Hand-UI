@@ -43,7 +43,7 @@ export default function ClientView(props: IClientView){
                     <div className="card w-96 bg-primary shadow-xl">
                         <div className="card-body">
                             <h2 className="card-title">{request.title}</h2>
-                            <p>{request.description}</p>
+                            <p>Description: {request.description}</p>
                             <div className="card-actions justify-end">
                                 <button className="btn btn-primary" onClick={(e) => updateRequest(e, request)}>Update Request</button>
                                 <button className="btn btn-primary" onClick={(e) => viewBids(e, request)}>View Bids</button>

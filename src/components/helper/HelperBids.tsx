@@ -39,9 +39,9 @@ function HelperBids(props: IHelperBidsProps) {
                     <div className="card w-96 bg-primary shadow-xl">
                         <div className="card-body">
                             <h2 className="card-title">{bid.request.title}</h2>
-                            <p>{bid.request.description}</p>
-                            <p>{bid.amount}</p>
-                            <p>{bid.status}</p>
+                            <p>Request Description{bid.request.description}</p>
+                            <p>Bid Amount: {bid.amount}</p>
+                            <p>Bid Status: {bid.status}</p>
                             <button className="btn btn-primary" onClick={(e) => updateBid(e, bid)}>Update Bid Amount</button>
                         </div>
                     </div>

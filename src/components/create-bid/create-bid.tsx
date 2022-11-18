@@ -63,7 +63,7 @@ function CreateBid(props: ICreateBidProps){
 
     return (
         <div className='create-req-cont'>
-            <p>Bid Creation</p>
+            <p className='text-white text-xl'>Bid Creation</p>
             <input className="text-black" placeholder="Amount" type="amount" onChange={updateAmount} /><br/><br/>
             <label className="btn btn-secondary" onClick={helperCreateBid}>Create Bid</label>
         </div>

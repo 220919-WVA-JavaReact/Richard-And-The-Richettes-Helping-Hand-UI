@@ -41,7 +41,7 @@ export default function HelperView(props: IHelperView){
           <div className="card w-96 bg-primary shadow-xl text-center">
               <div className="card-body">
                   <h2 className="card-title">{request.title}</h2>
-                  <p>{request.description}</p>
+                  <p>Description: {request.description}</p>
                   <div className="card-actions justify-end">
                       <button className="btn btn-primary" onClick={(e) => bidOnRequest(e, request)}>Bid on Request</button>
                   </div>
