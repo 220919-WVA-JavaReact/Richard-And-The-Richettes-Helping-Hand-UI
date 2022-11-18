@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Bid } from "../../models/bid";
 import { Request } from "../../models/request";
 import { Helper } from "../../models/helper";
-import './create-request.css';
+import '../create-request/create-request.css';
 
 interface IUpdateAmountProps {
     currentBid: Bid | undefined;

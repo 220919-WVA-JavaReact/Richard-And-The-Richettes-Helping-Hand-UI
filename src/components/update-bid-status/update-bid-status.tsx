@@ -4,7 +4,7 @@ import { Bid } from "../../models/bid";
 import { Request } from "../../models/request";
 import { Client } from "../../models/client";
 import { Status } from '../../models/status';
-import './create-request.css';
+import '../create-request/create-request.css';
 
 interface IUpdateStatusProps {
     currentBid: Bid | undefined;

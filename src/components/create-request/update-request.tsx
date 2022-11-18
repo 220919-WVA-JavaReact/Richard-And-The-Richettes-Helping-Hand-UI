@@ -4,6 +4,7 @@ import { Bid } from "../../models/bid";
 import { Request } from "../../models/request";
 import { Helper } from "../../models/helper";
 import { Client } from "../../models/client";
+import './create-request.css';
 
 
 interface IUpdateRequest {
