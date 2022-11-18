@@ -70,7 +70,7 @@ function UpdateStatus(props: IUpdateStatusProps){
                 <div className="card-body">
                     <h2 className="card-title">{props.currentRequest?.title}</h2>
                     <p>Request Description: {props.currentRequest?.description}</p>
-                    <p>Bid Amount: {props.currentBid?.amount}</p>
+                    <p>Bid Amount: ${props.currentBid?.amount}</p>
                     <p>Bid Status: {props.currentBid?.status}</p>
                     <button className="btn btn-primary" onClick={acceptBid}>Accept</button>
                     <button className="btn btn-primary" onClick={declineBid}>Decline</button>
