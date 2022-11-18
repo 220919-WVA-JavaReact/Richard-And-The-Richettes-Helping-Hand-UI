@@ -6,12 +6,14 @@ import HHAPI from '../../utils/utility';
 
 interface IHelperBidsProps {
     loggedInHelper: Helper | undefined;
+    setCurrentBid: (nextBid: Bid) => void;
 }
 
 function HelperBids(props: IHelperBidsProps) {
     const helper = props.loggedInHelper;
     const [bids, setBids] = useState<Bid[]>();
     const [message, setErrorMessage] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         console.log(helper)
@@ -21,6 +23,12 @@ function HelperBids(props: IHelperBidsProps) {
     async function getBids() {
         const bids = await HHAPI(`/helper/${helper?.id}/bids`, 'GET')
         setBids(bids);
+    }
+
+    const updateBid = (e: SyntheticEvent, bid: Bid) => {
+        e.preventDefault();
+        props.setCurrentBid(bid)
+        navigate(`/helper/${helper?.id}/bid/${bid.id}/update-bid`)
     }
 
     return (
@@ -34,6 +42,7 @@ function HelperBids(props: IHelperBidsProps) {
                             <p>{bid.request.description}</p>
                             <p>{bid.amount}</p>
                             <p>{bid.status}</p>
+                            <button className="btn btn-primary" onClick={(e) => updateBid(e, bid)}>Update Bid Amount</button>
                         </div>
                     </div>
                 </div>

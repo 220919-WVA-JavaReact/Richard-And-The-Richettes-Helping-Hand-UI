@@ -13,10 +13,11 @@ interface IUpdateAmountProps {
 
 function UpdateAmount(props: IUpdateAmountProps){
     const [amount, setAmount] = useState("");
-    const id = props.currentRequest?.id;
+    const id = props.currentBid?.id;
     const helperId = props.loggedInHelper?.id;
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
+    const status = props.currentBid?.status;
 
     const updateAmount = (e: SyntheticEvent) => {
         setAmount((e.target as HTMLInputElement).value);
@@ -25,15 +26,16 @@ function UpdateAmount(props: IUpdateAmountProps){
     async function helperUpdateBid(e: SyntheticEvent){
         e.preventDefault();
         try{
-            let bid = await fetch(`${process.env.REACT_APP_API_URL}/bids`, {
-                method: "PATCH",
+            let bid = await fetch(`http://localhost:8080/bids`, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     id,
                     helperId,
-                    amount
+                    amount,
+                    status
                 }),
             });
             console.log(bid);

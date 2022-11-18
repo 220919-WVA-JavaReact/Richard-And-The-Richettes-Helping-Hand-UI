@@ -17,6 +17,8 @@ import HelperRegister from "./components/helper-register/helper-register";
 import ClientRegister from "./components/client-register/client-register";
 import ClientLogin from "./components/client-login/client-login";
 import UpdateRequest from "./components/create-request/update-request";
+import UpdateStatus from "./components/update-bid-status/update-bid-status";
+
 
 function App() {
   const [loggedInHelper, setloggedInHelper] = useState<Helper>();
@@ -35,12 +37,12 @@ function App() {
       <Routes>
       <Route path="/" element={<Landing />}></Route>
       <Route path={`/client/${loggedInClient?.id}`} element={<ClientProfile loggedInClient={loggedInClient} setCurrentRequest={setCurrentRequest}/>}></Route>
-      <Route path={`/helper/${loggedInHelper?.id}`} element={<HelperProfile loggedInHelper={loggedInHelper} setCurrentRequest={setCurrentRequest}/>}></Route>
+      <Route path={`/helper/${loggedInHelper?.id}`} element={<HelperProfile loggedInHelper={loggedInHelper} setCurrentRequest={setCurrentRequest} setCurrentBid={setCurrentBid}/>}></Route>
       <Route path={`/client/${loggedInClient?.id}/create-request`} element={<CreateRequest loggedInClient={loggedInClient} />}></Route>
       <Route path={`/request/${currentRequest?.id}/new-bid`} element={<CreateBid currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
       <Route path={`/helper/${loggedInHelper?.id}/bid/${currentBid?.id}`} element={<UpdateAmount currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
       <Route path={`/client/${loggedInClient?.id}/request/${currentRequest?.id}/update-request`} element={<UpdateRequest loggedInClient={loggedInClient} currentRequest={currentRequest} setCurrentRequest={setCurrentRequest} />}></Route>
-      {/* <Route path="/bids" element={<UpdateStatus currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInClient={loggedInClient} currentRequest={currentRequest}/>}></Route> */}
+      <Route path={`/helper/${loggedInHelper?.id}/bid/${currentBid?.id}/update-bid`} element={<UpdateAmount currentBid={currentBid} setCurrentBid={setCurrentBid} loggedInHelper={loggedInHelper} currentRequest={currentRequest}/>}></Route>
       </Routes>
       <div className="modal" id="my-modal-6">
         <div className="modal-box max-w-[18%]">

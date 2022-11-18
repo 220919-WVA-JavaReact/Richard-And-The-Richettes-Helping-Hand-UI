@@ -14,7 +14,16 @@ function ClientProfile(props: ClientProfileProps) {
 
     return (
         <div className='clientProfileContainer'>
-            <ClientView loggedInClient={loggedInClient} setCurrentRequest={props.setCurrentRequest}/>
+            <div className="flex flex-col w-full lg:flex-row">
+                <div className="grid flex-grow h-32 card place-items-center">
+                    <h1 className='text-xl'>Your Current Bids</h1>
+                    <ClientView loggedInClient={loggedInClient} setCurrentRequest={props.setCurrentRequest}/>
+                </div> 
+                <div className="grid flex-grow h-32 card place-items-center">
+                    <h2 className='text-xl'>Open Requests</h2>
+                    
+                </div>
+            </div>
         </div>
     )
 }
