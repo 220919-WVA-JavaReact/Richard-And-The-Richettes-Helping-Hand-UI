@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Bid } from "../../models/bid";
 import { Request } from "../../models/request";
 import { Client } from "../../models/client";
+import { Status } from '../../models/status';
 
 interface IUpdateStatusProps {
     currentBid: Bid | undefined;
@@ -13,29 +14,37 @@ interface IUpdateStatusProps {
 
 function UpdateStatus(props: IUpdateStatusProps){
     const [status, setStatus] = useState("");
-    const id = props.currentRequest?.id;
+    const id = props.currentBid?.id;
     const clientId = props.loggedInClient?.id;
+    const helperId = props.currentBid?.helperId;
+    const amount = props.currentBid?.amount;
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
 
-    
-
-    const updateStatus = (e: SyntheticEvent) => {
-        setStatus((e.target as HTMLInputElement).value);
-    };
-
-    async function clientUpdateStatus(e: SyntheticEvent){
+    const acceptBid = (e: SyntheticEvent) => {
         e.preventDefault();
+        setStatus(Status.ACCEPTED)
+        clientUpdateStatus();
+    }
+
+    const declineBid = (e: SyntheticEvent) => {
+        e.preventDefault();
+        setStatus(Status.DECLINED)
+        clientUpdateStatus();
+    }
+
+    async function clientUpdateStatus(){
         try{
             let bid = await fetch(`${process.env.REACT_APP_API_URL}/bids`,{
-                method: "PATCH",
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     id,
-                    clientId,
-                    status
+                    helperId,
+                    status,
+                    amount
                 }),
             });
             console.log(bid);
@@ -56,10 +65,15 @@ function UpdateStatus(props: IUpdateStatusProps){
     return (
         <div>
             <p>Updating Bid</p>
-
-            <input className="text-black" placeholder="Status" type="status" onChange={updateStatus} /><br/><br/>
-            <label className="btn btn-secondary" onClick={clientUpdateStatus}>Update Status</label>
-        
+            <div className="card w-96 bg-primary shadow-xl">
+                <div className="card-body">
+                    <h2 className="card-title">{props.currentRequest?.title}</h2>
+                    <p>{props.currentRequest?.description}</p>
+                    <p>{props.currentBid?.amount}</p>
+                    <button className="btn btn-primary" onClick={acceptBid}>Accept</button>
+                    <button className="btn btn-primary" onClick={declineBid}>Decline</button>
+                </div>
+            </div>
         </div>
     )
 }

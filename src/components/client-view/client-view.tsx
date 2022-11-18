@@ -28,6 +28,12 @@ export default function ClientView(props: IClientView){
         props.setCurrentRequest(request)
         navigate(`/client/${currentUser?.id}/request/${request.id}/update-request`)
     }
+
+    const viewBids = (e: SyntheticEvent, request: Request) => {
+        e.preventDefault();
+        props.setCurrentRequest(request)
+        navigate(`/client/${currentUser?.id}/request/${request.id}/bids`)
+    }
     
     return (
         <>
@@ -40,6 +46,7 @@ export default function ClientView(props: IClientView){
                             <p>{request.description}</p>
                             <div className="card-actions justify-end">
                                 <button className="btn btn-primary" onClick={(e) => updateRequest(e, request)}>Update Request</button>
+                                <button className="btn btn-primary" onClick={(e) => viewBids(e, request)}>View Bids</button>
                             </div>
                         </div>
                     </div>
