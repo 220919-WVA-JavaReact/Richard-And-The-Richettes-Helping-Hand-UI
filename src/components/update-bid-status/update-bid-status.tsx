@@ -13,7 +13,7 @@ interface IUpdateStatusProps {
 }
 
 function UpdateStatus(props: IUpdateStatusProps){
-    const [status, setStatus] = useState("");
+    // const [status, setStatus] = useState("");
     const id = props.currentBid?.id;
     const clientId = props.loggedInClient?.id;
     const helperId = props.currentBid?.helperId;
@@ -24,17 +24,15 @@ function UpdateStatus(props: IUpdateStatusProps){
 
     const acceptBid = (e: SyntheticEvent) => {
         e.preventDefault();
-        setStatus(Status.ACCEPTED)
-        clientUpdateStatus();
+        clientUpdateStatus(Status.ACCEPTED);
     }
 
     const declineBid = (e: SyntheticEvent) => {
         e.preventDefault();
-        setStatus(Status.DECLINED)
-        clientUpdateStatus();
+        clientUpdateStatus(Status.DECLINED);
     }
 
-    async function clientUpdateStatus(){
+    async function clientUpdateStatus(status: Status){
         try{
             let bid = await fetch(`${process.env.REACT_APP_API_URL}/bids`,{
                 method: "PUT",
