@@ -23,12 +23,12 @@ function UpdateStatus(props: IUpdateStatusProps){
     const request = props.currentRequest;
 
     const acceptBid = (e: SyntheticEvent) => {
-        e.preventDefault();
+        // e.preventDefault();
         clientUpdateStatus(Status.ACCEPTED);
     }
 
     const declineBid = (e: SyntheticEvent) => {
-        e.preventDefault();
+        // e.preventDefault();
         clientUpdateStatus(Status.DECLINED);
     }
 
