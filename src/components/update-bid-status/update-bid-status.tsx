@@ -20,6 +20,7 @@ function UpdateStatus(props: IUpdateStatusProps){
     const amount = props.currentBid?.amount;
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
+    const request = props.currentRequest;
 
     const acceptBid = (e: SyntheticEvent) => {
         e.preventDefault();
@@ -43,8 +44,9 @@ function UpdateStatus(props: IUpdateStatusProps){
                 body: JSON.stringify({
                     id,
                     helperId,
+                    amount,
                     status,
-                    amount
+                    request
                 }),
             });
             console.log(bid);
