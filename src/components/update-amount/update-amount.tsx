@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Bid } from "../../models/bid";
 import { Request } from "../../models/request";
 import { Helper } from "../../models/helper";
+import './create-request.css';
 
 interface IUpdateAmountProps {
     currentBid: Bid | undefined;
@@ -55,11 +56,11 @@ function UpdateAmount(props: IUpdateAmountProps){
 
 
     return (
-        <div>
-            <p>Updating Bid</p>
+        <div className='create-req-cont'>
+            <p className='text-white text-xl'>Updating Bid</p>
 
             <input className="text-black" placeholder="Amount" type="amount" onChange={updateAmount} /><br/><br/>
-            <label className="btn btn-secondary" onClick={helperUpdateBid}>Update Amount</label><br/><br/>
+            <label className="btn btn-secondary px-16" onClick={helperUpdateBid}>Update Amount</label><br/><br/>
             
         </div>
     )

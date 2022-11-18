@@ -23,7 +23,7 @@ function HelperProfile(props: HelperProfileProps) {
                 <HelperBids loggedInHelper={helper} setCurrentBid={props.setCurrentBid}/>
                 </div> 
             <div className="grid flex-grow h-32 card place-items-center">
-                <h2 className='text-xl'>Open Requests</h2>
+                <h1 className='text-xl'>Open Requests</h1>
                 <HelperView loggedInHelper={helper} setCurrentRequest={props.setCurrentRequest}/>
                 </div>
             </div>

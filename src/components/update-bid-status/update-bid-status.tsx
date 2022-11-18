@@ -4,6 +4,7 @@ import { Bid } from "../../models/bid";
 import { Request } from "../../models/request";
 import { Client } from "../../models/client";
 import { Status } from '../../models/status';
+import './create-request.css';
 
 interface IUpdateStatusProps {
     currentBid: Bid | undefined;
@@ -63,7 +64,7 @@ function UpdateStatus(props: IUpdateStatusProps){
     }
 
     return (
-        <div>
+        <div className='create-req-cont'>
             <p>Updating Bid</p>
             <div className="card w-96 bg-primary shadow-xl">
                 <div className="card-body">
